@@ -12,6 +12,8 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DockModule} from 'primeng/dock';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+
 
 // === MATERIAL MODULE======
 import {MatInputModule} from '@angular/material/input';
@@ -22,13 +24,19 @@ import {MatIconModule} from '@angular/material/icon';
 // ===== COMPONENT ======
 import { LayoutComponent } from './shared/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LoginComponent } from './auth/login/login.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { PetitionComponent } from './pages/petition/petition.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    ChangePasswordComponent,
+    PetitionComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +51,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatInputModule,
     MatSidenavModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    BreadcrumbModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

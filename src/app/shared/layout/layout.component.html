@@ -1,37 +1,55 @@
+<div style="height: 100vh;">
+    <nav id="navbar-example2" class="navbar navbar-light px-3" style="background-color: #2d3b4d;">
 
-<nav id="navbar-example2" class="navbar navbar-light px-3" style="background-color: #2d3b4d;">
+        <a class="navbar-brand" style="display: flex;">
+            <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
+            <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>
+        </a>
 
-    <a class="navbar-brand" style="display: flex;">
-        <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
-       <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>
-    </a>
-
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-        </li>
-        <!-- <li class="nav-item">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+            <!-- <li class="nav-item">
             <a class="nav-link" href="">Second</a>
         </li> -->
 
-    </ul>
-</nav>
+        </ul>
+    </nav>
+    <mat-drawer-container class="example-container" autosize>
 
-    <mat-drawer-container class="example-container" autosize >
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened>
 
-        <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>Auto-resizing sidenav</p>
+        <p>Auto-resizing sidenav</p>
+        <p>Auto-resizing sidenav</p>
 
-            <p>Auto-resizing sidenav</p>
-            <p>Auto-resizing sidenav</p>
-            <p>Auto-resizing sidenav</p>
+    </mat-drawer>
 
-        </mat-drawer>
+    <router-outlet></router-outlet>
 
-        <div>
+    <!-- <footer class="bg-white p-4">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="text-center text-md-left ">
+                      <p class="mb-0">
+                        &copy; Copyright <span id="copyright">
+                          <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                        </span> <a href="https://www.fintechinno.com/" style="color: black;"> Fintechinno </a> All Rights Reserved
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="text-center text-md-right">
+                      <li class="list-inline-item"><a href="javascript:void(0);">Terms & Conditions </a> </li>
+                      <li class="list-inline-item"><a href="javascript:void(0);">API Use Policy </a> </li>
+                      <li class="list-inline-item"><a href="javascript:void(0);">Privacy Policy </a> </li>
+                    </ul>
+                  </div>
+                </div>
+              </footer> -->
 
-            <router-outlet></router-outlet>
+</mat-drawer-container>
+</div>
 
-        </div>
-
-    </mat-drawer-container>
 
