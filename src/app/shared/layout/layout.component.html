@@ -1,37 +1,27 @@
 
-<nav id="navbar-example2" class="navbar navbar-light px-3" style="background-color: #ff408121;">
-
+<nav id="navbar" class="navbar navbar-light px-3" style="background-color: #2d3b4d;">
     <a class="navbar-brand" style="display: flex;">
-        <mat-icon (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
-       <div style="margin-left: 15px;margin-top: 2px;">MWAC</div> 
+        <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
+       <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>
     </a>
-
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a class="nav-link" href="test">Profile</a>
+            <a class="nav-link" href="#">Profile</a>
         </li>
         <!-- <li class="nav-item">
             <a class="nav-link" href="">Second</a>
         </li> -->
-
     </ul>
 </nav>
-
-    <mat-drawer-container class="example-container" autosize >
-
-        <mat-drawer #drawer class="example-sidenav" mode="side">
-
+    <mat-drawer-container class="container" autosize >
+        <mat-drawer #drawer class="sidenav" mode="side">
             <p>Auto-resizing sidenav</p>
             <p>Auto-resizing sidenav</p>
             <p>Auto-resizing sidenav</p>
-
         </mat-drawer>
-
         <div>
-
             <router-outlet></router-outlet>
 
         </div>
-
     </mat-drawer-container>
 

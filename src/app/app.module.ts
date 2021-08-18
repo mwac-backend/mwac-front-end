@@ -20,7 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 // ===== COMPONENT ======
-import { LayoutComponent } from './pages/layout/layout.component';
+import { LayoutComponent } from './shared/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
@@ -44,7 +44,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule
-    
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
