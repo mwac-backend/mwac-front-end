@@ -1,32 +1,37 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">MWAC</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li> -->
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-  
-  <mat-form-field class="example-form-field" appearance="fill">
-    <mat-label>Clearable input</mat-label>
-    <input matInput type="text" >
-    <button  matSuffix mat-icon-button aria-label="Clear" >
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
- 
+<nav id="navbar-example2" class="navbar navbar-light px-3" style="background-color: #ff408121;">
 
+    <a class="navbar-brand" style="display: flex;">
+        <mat-icon (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
+       <div style="margin-left: 15px;margin-top: 2px;">MWAC</div> 
+    </a>
 
- <router-outlet></router-outlet>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="test">Profile</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="">Second</a>
+        </li> -->
+
+    </ul>
+</nav>
+
+    <mat-drawer-container class="example-container" autosize >
+
+        <mat-drawer #drawer class="example-sidenav" mode="side">
+
+            <p>Auto-resizing sidenav</p>
+            <p>Auto-resizing sidenav</p>
+            <p>Auto-resizing sidenav</p>
+
+        </mat-drawer>
+
+        <div>
+
+            <router-outlet></router-outlet>
+
+        </div>
+
+    </mat-drawer-container>
+

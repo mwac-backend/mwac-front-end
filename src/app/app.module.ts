@@ -13,9 +13,11 @@ import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DockModule} from 'primeng/dock';
 
-// ===MAT ======
+// === MATERIAL MODULE======
 import {MatInputModule} from '@angular/material/input';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 // ===== COMPONENT ======
 import { LayoutComponent } from './pages/layout/layout.component';
@@ -38,7 +40,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     BrowserAnimationsModule,
     SidebarModule,
     DockModule,
-    MatInputModule
+    MatInputModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

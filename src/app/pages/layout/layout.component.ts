@@ -19,8 +19,9 @@ export class LayoutComponent implements OnInit {
 
   isSearchActive: boolean = false;
   isSlideMenu: boolean = false;
+
+  showFiller = false;
   
-  visibleSidebar1: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
