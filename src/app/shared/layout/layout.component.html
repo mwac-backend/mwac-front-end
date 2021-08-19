@@ -1,67 +1,70 @@
-<nav id="navbar-example2" class="navbar navbar-light px-3" style="background-color: #2d3b4d;">
+<div style="height: 100vh;">
+  <nav id="navbar-example2" class="navbar navbar-light px-3" style="background-color: #2d3b4d;">
 
-  <a class="navbar-brand" style="display: flex;">
-    <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
-    <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>
-  </a>
-
-  <ul class="nav nav-pills">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Profile</a>
-    </li>
-    <!-- <li class="nav-item">
-        <a class="nav-link" href="">Second</a>
-    </li> -->
-
-  </ul>
-</nav>
-<mat-drawer-container class="example-container" autosize>
-
-  <mat-drawer #drawer [opened]="true" class="example-sidenav" mode="side">
-    <p style="padding: 20px;">การนำทาง</p>
-    <mat-nav-list style="background: #FFFFFF">
-      <mat-list-item routerLink="[item.route]">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <span class="material-icons-outlined"> home </span>
-          test
-        </div>
-      </mat-list-item>
-
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
+    <a class="navbar-brand" style="display: flex;">
+      <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
+      <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>
+    </a>
+  
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Profile</a>
+      </li>
+      <!-- <li class="nav-item">
+          <a class="nav-link" href="">Second</a>
+      </li> -->
+  
+    </ul>
+  </nav>
+  <mat-drawer-container class="example-container" autosize>
+  
+    <mat-drawer #drawer [opened]="true" class="example-sidenav" mode="side">
+      <p style="padding: 20px;">การนำทาง</p>
+      <mat-nav-list style="background: #FFFFFF">
+        <mat-list-item routerLink="[item.route]">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="material-icons-outlined"> home </span>
+            test
+          </div>
+        </mat-list-item>
+  
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <span class="material-icons-outlined"> home </span>
+                  test
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item routerLink="[child.route]">
               <div fxLayout="row" fxLayoutAlign="space-between center">
                 <span class="material-icons-outlined"> home </span>
                 test
               </div>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-list-item routerLink="[child.route]">
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <span class="material-icons-outlined"> home </span>
-              test
-            </div>
-          </mat-list-item>
-        </mat-expansion-panel>
-      </mat-accordion>
-
-      <mat-list-item routerLink="[item.route]">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <span  class="material-icons-outlined"> home </span>
-          <label>test</label>
-        </div>
-      </mat-list-item>
-    </mat-nav-list>
-    <br>
-    <p-panelMenu [model]="items" [style]="{'background':'#2d3b4d'}"></p-panelMenu>
-  </mat-drawer>
-
-  <div>
-
-    <router-outlet></router-outlet>
-
-  </div>
-
-</mat-drawer-container>
-
+            </mat-list-item>
+          </mat-expansion-panel>
+        </mat-accordion>
+  
+        <mat-list-item routerLink="[item.route]">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span  class="material-icons-outlined"> home </span>
+            <label>test</label>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+      <br>
+      <p-panelMenu [model]="items" [style]="{'background':'#2d3b4d'}"></p-panelMenu>
+    </mat-drawer>
+  
+    <div>
+  
+      <router-outlet></router-outlet>
+  
+    </div>
+  
+  </mat-drawer-container>
+  
+  
+</div>
