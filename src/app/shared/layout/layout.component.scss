@@ -1,19 +1,39 @@
 .example-container {
-    width: 100vw;
-    height: 93vh;
-    // border: 1px solid #fff;
-  }
+  width: 100vw;
+  height: 93vh;
+  // border: 1px solid #fff;
+}
 
-  .example-sidenav-content {
-    // display: flex;
-    height: 100%;
-    // align-items: center;
-    // justify-content: center;
-  }
+.example-sidenav-content {
+  // display: flex;
+  height: 100%;
+  // align-items: center;
+  // justify-content: center;
+}
 
-  .example-sidenav {
-    padding: 20px;
-    width: 13vw;
-    background-color: #2d3b4d;
-  }
-p{color: #FFF}
+.example-sidenav {
+  padding: 0;
+  width: 13vw;
+  background-color: #2d3b4d;
+}
+
+p {
+  color: #FFF
+}
+
+.p-panelmenu .p-panelmenu-header > a {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  background: #653535;
+  font-weight: 600;
+  border-radius: 3px;
+  transition: box-shadow 0.2s;
+}
+
+.mat-expansion-panel {
+  box-shadow: 0 0 0 0 #FFF !important;
+}
+.mat-expansion-panel-header {
+  padding: 0px 16px !important;
+}

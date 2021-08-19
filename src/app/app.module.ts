@@ -12,13 +12,15 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DockModule} from 'primeng/dock';
-
+import {MenuModule} from 'primeng/menu';
+import {PanelMenuModule} from 'primeng/panelmenu';
 // === MATERIAL MODULE======
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
 // ===== COMPONENT ======
 import { LayoutComponent } from './shared/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -43,7 +45,11 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatInputModule,
     MatSidenavModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    PanelMenuModule,
+    MenuModule,
+    MatExpansionModule,
+    MatListModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
