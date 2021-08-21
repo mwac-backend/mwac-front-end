@@ -10,21 +10,29 @@
 
 .example-sidenav {
   padding: 0;
-  width: 13vw;
+  width: 250px;
   background-color: #2d3b4d;
 }
 
-.mat-expansion-panel {
-  box-shadow: 0 0 0 0 #FFF !important;
-}
-.mat-expansion-panel-header {
-  padding: 0 16px !important;
-}
-.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
-  color: #FFFFFF !important;
-}
 .icon-text {
   display: flex;
   align-items: center;
   color:#FFF;
+}
+
+#loyout{
+  .mat-expansion-panel {
+    box-shadow: 0 0 0 0 #FFF !important;
+    background-color: #2d3b4d;
+  }
+  .mat-expansion-panel-header {
+    padding: 0 16px !important;
+  }
+  .mat-expansion-panel-header.mat-expanded,
+  .mat-expansion-panel-header.mat-expanded:hover {
+    background: #13263f;
+  }
+  .mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+    color: #FFFFFF !important;
+  }
 }

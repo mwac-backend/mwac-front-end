@@ -24,6 +24,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
+import {LayoutModule} from '@angular/cdk/layout';
 // ===== COMPONENT ======
 import { LayoutComponent } from './shared/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -60,6 +61,7 @@ import { PetitionComponent } from './pages/petition/petition.component';
     MatExpansionModule,
     MatListModule,
     BreadcrumbModule,
+    LayoutModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
