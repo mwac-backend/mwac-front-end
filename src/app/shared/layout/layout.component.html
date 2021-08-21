@@ -16,7 +16,7 @@
 
     </ul>
   </nav>
-  <mat-drawer-container class="example-container" autosize>
+  <mat-drawer-container class="example-container">
 
     <mat-drawer #drawer [opened]="true" [mode]="'side'" class="example-sidenav" mode="side">
       <p style="padding: 20px;color:#FFF;">การนำทาง</p>
@@ -68,6 +68,7 @@
 
       <router-outlet></router-outlet>
 
+      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright OBCD</div> 
     </div>
 
   </mat-drawer-container>
