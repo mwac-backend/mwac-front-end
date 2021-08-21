@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 // ===== PRIME NG MODULE ======
 import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
@@ -31,7 +31,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { PetitionComponent } from './pages/petition/petition.component';
-
+import { InterceptorService} from  './shared/service/interceptor.service'
 
 @NgModule({
   declarations: [
@@ -62,10 +62,17 @@ import { PetitionComponent } from './pages/petition/petition.component';
     MatListModule,
     BreadcrumbModule,
     LayoutModule,
+    HttpClientModule,
+    ReactiveFormsModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true,
+  },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -59,6 +59,13 @@
             <span>&nbsp;ผลการดำเนินงาน</span>
           </div>
         </mat-list-item>
+
+        <mat-list-item (click)="auth.onLogout()">
+          <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="material-icons-outlined"> logout </span>
+            <span>&nbsp;ออกจากระบบ</span>
+          </div>
+        </mat-list-item>
       </mat-nav-list>
       <br>
 <!--      <p-panelMenu [model]="items" [style]="{'background':'#2d3b4d'}"></p-panelMenu>-->
@@ -68,7 +75,7 @@
 
       <router-outlet></router-outlet>
 
-      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright OBCD</div> 
+      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright OBCD</div>
     </div>
 
   </mat-drawer-container>

@@ -15,18 +15,17 @@ export class EncryptionService {
   encryptSecretKey = 'hjalhfaldlandladladladldhalhdlajdlahdaahamnah,mnada,mdnahd';
   constructor() {}
 
- 
- encryptionAES(data) {
 
+ encryptionAES(data:any) {
     try {
       return crypto.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
     } catch (e) {
       console.error(e);
+      return ;
     }
   }
 
-  decryptionAES(data) {
-
+  decryptionAES(data:any) {
     try {
       const bytes = crypto.AES.decrypt(data, this.encryptSecretKey);
       if (bytes.toString()) {
@@ -35,6 +34,7 @@ export class EncryptionService {
       return data;
     } catch (e) {
       console.error(e);
+      return ;
     }
   }
 }
