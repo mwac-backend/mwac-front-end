@@ -31,7 +31,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { PetitionComponent } from './pages/petition/petition.component';
-import { InterceptorService} from  './shared/service/interceptor.service'
+import { InterceptorService} from  './shared/service/interceptor.service';
+import { DateFormatPipe } from './shared/pipe/date-format.pipe'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { InterceptorService} from  './shared/service/interceptor.service'
     DashboardComponent,
     LoginComponent,
     ChangePasswordComponent,
-    PetitionComponent
+    PetitionComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,9 @@ import { InterceptorService} from  './shared/service/interceptor.service'
     HttpClientModule,
     ReactiveFormsModule
 
+  ],
+  exports: [
+    DateFormatPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{
