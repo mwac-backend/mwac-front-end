@@ -34,7 +34,7 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
 import { PetitionComponent } from './pages/petition/petition.component';
 import { InterceptorService} from  './shared/service/interceptor.service';
 import { DateFormatPipe } from './shared/pipe/date-format.pipe'
-
+import {ToastModule} from 'primeng/toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +69,7 @@ import { DateFormatPipe } from './shared/pipe/date-format.pipe'
     ReactiveFormsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
+    ToastModule,
 
   ],
   exports: [

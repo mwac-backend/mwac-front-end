@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
     // this.layout.sShow()
   }
   test(){
-    this.layout.showSuccess()
+    this.layout.showSuccess();
+    this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'Test', detail: 'ทดสอบจ้า'});
   }
 }
