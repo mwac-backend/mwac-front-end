@@ -32,7 +32,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { PetitionComponent } from './pages/petition/petition.component';
-import { InterceptorService} from  './shared/service/interceptor.service'
+import { InterceptorService} from  './shared/service/interceptor.service';
+import { FollowUpComponent } from './pages/follow-up/follow-up.component';
+import { FollowUpManageComponent } from './pages/follow-up/follow-up-manage/follow-up-manage.component'
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { InterceptorService} from  './shared/service/interceptor.service'
     DashboardComponent,
     LoginComponent,
     ChangePasswordComponent,
-    PetitionComponent
+    PetitionComponent,
+    FollowUpComponent,
+    FollowUpManageComponent
   ],
   imports: [
     BrowserModule,
