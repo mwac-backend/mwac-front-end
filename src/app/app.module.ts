@@ -35,6 +35,7 @@ import { PetitionComponent } from './pages/petition/petition.component';
 import { InterceptorService} from  './shared/service/interceptor.service';
 import { FollowUpComponent } from './pages/follow-up/follow-up.component';
 import { FollowUpManageComponent } from './pages/follow-up/follow-up-manage/follow-up-manage.component'
+import { DateFormatPipe } from './shared/pipe/date-format.pipe'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { FollowUpManageComponent } from './pages/follow-up/follow-up-manage/foll
     ChangePasswordComponent,
     PetitionComponent,
     FollowUpComponent,
-    FollowUpManageComponent
+    FollowUpManageComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,9 @@ import { FollowUpManageComponent } from './pages/follow-up/follow-up-manage/foll
     NgxSpinnerModule,
     ToastrModule.forRoot(),
 
+  ],
+  exports: [
+    DateFormatPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{
