@@ -1,11 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
 // ===== PRIME NG MODULE ======
 import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
@@ -65,7 +66,9 @@ import { DateFormatPipe } from './shared/pipe/date-format.pipe'
     BreadcrumbModule,
     LayoutModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
 
   ],
   exports: [

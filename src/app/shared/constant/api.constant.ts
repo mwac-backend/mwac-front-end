@@ -1,6 +1,6 @@
 export class API_URL {
-  static BASE_URL = "";
+  static BASE_URL = "http://localhost:3006";
 
-  static get = API_URL.BASE_URL + '';
+  static login = API_URL.BASE_URL + '/api/v1/oauth/login';
 
 }
