@@ -21,16 +21,15 @@ import {MessageService} from 'primeng/api';
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  providers: [MessageService],
   encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
   @ViewChild("drawer", {static: true}) drawer: any;
 
-  constructor(public observer: BreakpointObserver, 
-    public cd: ChangeDetectorRef, 
+  constructor(public observer: BreakpointObserver,
+    public cd: ChangeDetectorRef,
     public auth: AuthService,
-     public router: Router, 
+     public router: Router,
      public spinner: NgxSpinnerService,
      private toastr: ToastrService,
      private messageService: MessageService, ) {
@@ -44,7 +43,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     console.log(a)
   }
 
-  
+
   showMessageNoti(data : any){
     this.messageService.add({key: data.key, severity:data.severity, summary: data.summary, detail: data.detail});
   }

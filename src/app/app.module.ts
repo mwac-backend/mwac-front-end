@@ -1,12 +1,12 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgxSpinnerModule } from "ngx-spinner";
-import { ToastrModule } from 'ngx-toastr';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {NgxSpinnerModule} from "ngx-spinner";
+import {ToastrModule} from 'ngx-toastr';
 // ===== PRIME NG MODULE ======
 import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
@@ -16,7 +16,7 @@ import {DockModule} from 'primeng/dock';
 import {MenuModule} from 'primeng/menu';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
-
+import {MessageService} from 'primeng/api';
 
 // === MATERIAL MODULE======
 import {MatInputModule} from '@angular/material/input';
@@ -27,16 +27,17 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
 // ===== COMPONENT ======
-import { LayoutComponent } from './shared/layout/layout.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LoginComponent } from './auth/login/login.component';
-import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { PetitionComponent } from './pages/petition/petition.component';
-import { InterceptorService} from  './shared/service/interceptor.service';
-import { FollowUpComponent } from './pages/follow-up/follow-up.component';
-import { FollowUpManageComponent } from './pages/follow-up/follow-up-manage/follow-up-manage.component'
-import { DateFormatPipe } from './shared/pipe/date-format.pipe'
+import {LayoutComponent} from './shared/layout/layout.component';
+import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import {LoginComponent} from './auth/login/login.component';
+import {ChangePasswordComponent} from './auth/change-password/change-password.component';
+import {PetitionComponent} from './pages/petition/petition.component';
+import {InterceptorService} from './shared/service/interceptor.service';
+import {FollowUpComponent} from './pages/follow-up/follow-up.component';
+import {FollowUpManageComponent} from './pages/follow-up/follow-up-manage/follow-up-manage.component'
+import {DateFormatPipe} from './shared/pipe/date-format.pipe'
 import {ToastModule} from 'primeng/toast';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,8 +85,9 @@ import {ToastModule} from 'primeng/toast';
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true,
-  },
+  }, MessageService,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

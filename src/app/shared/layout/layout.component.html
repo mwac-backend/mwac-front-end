@@ -4,12 +4,12 @@
     <a class="navbar-brand icon-text" style="display: flex;">
       <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
       <img style="height: 5vh;padding-left: 10px;;" src="assets/images/logo/logo.png">
-<!--      <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>-->
+      <!--      <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>-->
     </a>
 
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link" (click)="showSuccess()" >Profile</a>
+        <a class="nav-link" (click)="showSuccess()">Profile</a>
       </li>
       <!-- <li class="nav-item">
           <a class="nav-link" href="">Second</a>
@@ -30,7 +30,7 @@
         </mat-list-item>
 
         <mat-accordion id="loyout">
-          <mat-expansion-panel >
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
@@ -41,13 +41,13 @@
             </mat-expansion-panel-header>
             <mat-list-item routerLink="/petition">
               <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
-<!--                <span class="material-icons-outlined"> home </span>-->
+                <!--                <span class="material-icons-outlined"> home </span>-->
                 <span>ยื่นคำร้อง</span>
               </div>
             </mat-list-item>
             <mat-list-item routerLink="#">
               <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
-<!--                <span class="material-icons-outlined"> home </span>-->
+                <!--                <span class="material-icons-outlined"> home </span>-->
                 <span>ติดตามการช่วยเหลือ</span>
               </div>
             </mat-list-item>
@@ -56,7 +56,7 @@
 
         <mat-list-item routerLink="#">
           <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
-            <span  class="material-icons-outlined"> reorder </span>
+            <span class="material-icons-outlined"> reorder </span>
             <span>&nbsp;ผลการดำเนินงาน</span>
           </div>
         </mat-list-item>
@@ -69,14 +69,16 @@
         </mat-list-item>
       </mat-nav-list>
       <br>
-<!--      <p-panelMenu [model]="items" [style]="{'background':'#2d3b4d'}"></p-panelMenu>-->
+      <!--      <p-panelMenu [model]="items" [style]="{'background':'#2d3b4d'}"></p-panelMenu>-->
     </mat-drawer>
 
     <div>
 
       <router-outlet></router-outlet>
 
-      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">Copyright © 2021 OBCD. All Rights Reserved</div>
+      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">Copyright © 2021 OBCD. All
+        Rights Reserved
+      </div>
     </div>
 
   </mat-drawer-container>
@@ -85,10 +87,10 @@
 
   <p-toast position="bottom-right" key="custom">
     <ng-template let-message pTemplate="message">
-       
-    </ng-template>
-</p-toast>
 
-<p-toast position="top-right" key="tr"></p-toast>
+    </ng-template>
+  </p-toast>
+
+  <p-toast position="top-right" key="tr"></p-toast>
 
 </div>

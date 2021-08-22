@@ -8,14 +8,14 @@ import {LayoutComponent} from '../../shared/layout/layout.component'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public layout: LayoutComponent) {
+  constructor(public layout: LayoutComponent,) {
   }
 
   ngOnInit(): void {
     // this.layout.sShow()
   }
   test(){
-    this.layout.showSuccess();
-    this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'Test', detail: 'ทดสอบจ้า'});
+    this.layout.sShow()
+    // this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'Test', detail: 'ทดสอบจ้า'});
   }
 }
