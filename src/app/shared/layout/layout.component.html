@@ -1,14 +1,15 @@
 <div style="height: 100vh;">
   <nav id="navbar-example2" class="navbar navbar-light px-3" style="background-color: #2d3b4d;">
 
-    <a class="navbar-brand" style="display: flex;">
+    <a class="navbar-brand icon-text" style="display: flex;">
       <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
-      <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>
+      <img style="height: 5vh;padding-left: 10px;;" src="assets/images/logo/logo.png">
+<!--      <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>-->
     </a>
 
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link" (click)="btn()" >Profile</a>
+        <a class="nav-link" (click)="showSuccess()" >Profile</a>
       </li>
       <!-- <li class="nav-item">
           <a class="nav-link" href="">Second</a>
@@ -21,7 +22,7 @@
     <mat-drawer #drawer [opened]="true" [mode]="'side'" class="example-sidenav" mode="side">
       <p style="padding: 20px;color:#FFF;">การนำทาง</p>
       <mat-nav-list style="background-color: #2d3b4d;">
-        <mat-list-item routerLink="#">
+        <mat-list-item routerLinkActive="/dashboard" routerLink="dashboard">
           <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
             <span class="material-icons-outlined"> home </span>
             <span>&nbsp;หน้าแรก</span>
@@ -75,10 +76,10 @@
 
       <router-outlet></router-outlet>
 
-      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright OBCD</div>
+      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">Copyright © 2021 OBCD. All Rights Reserved</div>
     </div>
 
   </mat-drawer-container>
-
+  <ngx-spinner></ngx-spinner>
 
 </div>

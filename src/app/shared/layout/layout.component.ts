@@ -1,15 +1,20 @@
-import { BreakpointObserver } from "@angular/cdk/layout";
+import {BreakpointObserver} from "@angular/cdk/layout";
 import {
   Component,
   OnInit,
   ViewChild,
   AfterViewInit,
   ViewEncapsulation,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Injectable
 } from "@angular/core";
 import {Router} from "@angular/router";
-import {AuthService} from  "../service/auth.service"
-
+import {AuthService} from "../service/auth.service"
+import {NgxSpinnerService} from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -19,13 +24,14 @@ import {AuthService} from  "../service/auth.service"
 export class LayoutComponent implements OnInit, AfterViewInit {
   @ViewChild("drawer", {static: true}) drawer: any;
 
-  constructor(public observer: BreakpointObserver,public cd: ChangeDetectorRef,public auth:AuthService) {
+  constructor(public observer: BreakpointObserver, public cd: ChangeDetectorRef, public auth: AuthService, public router: Router, public spinner: NgxSpinnerService,private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
     this.drawer.mode = 'side';
     this.drawer.close();
-
+    let a = this.router.isActive('/dashboard', true)
+    console.log(a)
   }
 
   ngAfterViewInit() {
@@ -40,8 +46,15 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     });
     this.cd.detectChanges();
   }
-  btn() {
-    this.drawer.toggle()
+
+  sShow() {
+    this.spinner.show();
   }
 
+  shide() {
+    this.spinner.hide();
+  }
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
 }
