@@ -39,7 +39,7 @@
                 </div>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-list-item routerLink="#">
+            <mat-list-item routerLink="/petition">
               <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
 <!--                <span class="material-icons-outlined"> home </span>-->
                 <span>ยื่นคำร้อง</span>
@@ -81,5 +81,14 @@
 
   </mat-drawer-container>
   <ngx-spinner></ngx-spinner>
+
+
+  <p-toast position="bottom-right" key="custom">
+    <ng-template let-message pTemplate="message">
+       
+    </ng-template>
+</p-toast>
+
+<p-toast position="top-right" key="tr"></p-toast>
 
 </div>

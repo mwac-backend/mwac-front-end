@@ -36,7 +36,7 @@ import { InterceptorService} from  './shared/service/interceptor.service';
 import { FollowUpComponent } from './pages/follow-up/follow-up.component';
 import { FollowUpManageComponent } from './pages/follow-up/follow-up-manage/follow-up-manage.component'
 import { DateFormatPipe } from './shared/pipe/date-format.pipe'
-
+import {ToastModule} from 'primeng/toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +73,7 @@ import { DateFormatPipe } from './shared/pipe/date-format.pipe'
     ReactiveFormsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
+    ToastModule,
 
   ],
   exports: [
