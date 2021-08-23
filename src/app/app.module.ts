@@ -17,6 +17,8 @@ import {MenuModule} from 'primeng/menu';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MessageService} from 'primeng/api';
+import {CalendarModule} from 'primeng/calendar';
+import {FileUploadModule} from 'primeng/fileupload';
 
 // === MATERIAL MODULE======
 import {MatInputModule} from '@angular/material/input';
@@ -26,6 +28,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
+import {MatSelectModule} from '@angular/material/select';
+
 // ===== COMPONENT ======
 import {LayoutComponent} from './shared/layout/layout.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
@@ -75,6 +79,9 @@ import {ToastModule} from 'primeng/toast';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     ToastModule,
+    MatSelectModule,
+    CalendarModule,
+    FileUploadModule,
 
   ],
   exports: [
