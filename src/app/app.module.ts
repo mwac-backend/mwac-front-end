@@ -19,7 +19,6 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MessageService} from 'primeng/api';
 import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
-
 // === MATERIAL MODULE======
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';

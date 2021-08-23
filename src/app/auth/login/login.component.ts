@@ -11,6 +11,7 @@ import {API_URL} from '../../shared/constant/api.constant'
 import {Login} from '../../shared/constant/form.constant'
 import {Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   public myLogin: FormGroup;
   public formConfig = Login.form
 
-  constructor(private _formBuilder: FormBuilder, public _http: HttpService, private router: Router,public spinner: NgxSpinnerService,) {
+  constructor(private messageService: MessageService,private _formBuilder: FormBuilder, public _http: HttpService, private router: Router,public spinner: NgxSpinnerService,) {
     this.myLogin = this._formBuilder.group({
       [this.formConfig.username.field]: new FormControl({value: null, disabled: false}),
       [this.formConfig.password.field]: new FormControl({value: null, disabled: false}),
@@ -49,7 +50,13 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.error(error)
+        this.spinner.hide().then(r => {})
+        this.showErrorNoti(error.statusText)
       }
     )
+  }
+
+  showErrorNoti(error:string){
+    this.messageService.add({key: 'tr', severity:'error', summary: 'Error', detail: error});
   }
 }

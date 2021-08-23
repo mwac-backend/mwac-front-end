@@ -25,6 +25,7 @@ export class InterceptorService {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(token)
       return next.handle(request);
     }else{
 

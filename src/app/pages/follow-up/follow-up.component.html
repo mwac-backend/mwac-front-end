@@ -1,1 +1,27 @@
-<p>follow-up works!</p>
+<div class="card">
+  <p-table responsiveLayout="scroll" [value]="submissionControl">
+    <ng-template pTemplate="caption">
+      ติดตามการช่วยเหลือ
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>คำนำหน้า </th>
+        <th>ชื่อ</th>
+        <th>สกุล</th>
+        <th>คำร้อง</th>
+        <th>หน่วยงาน</th>
+        <th>สถานะ</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-submissionControl let-columns="columns">
+      <tr>
+        <td>{{submissionControl.title}}</td>
+        <td>{{submissionControl.firstName }}</td>
+        <td>{{submissionControl.lastName}}</td>
+        <td>{{submissionControl.petition}}</td>
+        <td>{{submissionControl.agencyNameTH}}</td>
+        <td>{{submissionControl.submissionControlStatusNameTH}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
