@@ -49,8 +49,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.accessToken)
         this._http.get(API_URL.userInfo, {}).subscribe(
           (res) => {
+            if(res){
             console.log(res)
-            localStorage.setItem('userDetail', res)
+            localStorage.setItem('userDetail', JSON.stringify(res))
+            }
             this.router.navigate(['/dashboard']).then(r => {
             })
           },
