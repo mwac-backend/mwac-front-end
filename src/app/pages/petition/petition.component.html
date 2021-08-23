@@ -1,21 +1,161 @@
-<div class="row" style="width: 100%;">
-    <div class="col">
-        <p class="mb-0" style="font-size: 20px;margin: 20px;">ยื่นคำร้องขอความช่วยเหลือ</p>
-    </div>
-    <div class="col" style="display: flex;justify-content: flex-end;align-items: flex-end;" >
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">ยื่นคำร้องขอความช่วยเหลือ</li>
-            </ol>
-          </nav>
-    </div>
+<div class="row" style="width: 100%;height: 70px;">
+  <div class="col-12 col-sm-6 mgTop">
+    <p class="mb-0" style="font-size: 17px;margin: 20px;">ยื่นคำร้องขอความช่วยเหลือ</p>
+  </div>
+  <div class="col-12 col-sm-6 breadcrumb"
+    style="display: flex;justify-content: flex-end;align-items: flex-end;margin-top: 20px;">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" routerLink="/dashboard"><span class="material-icons-outlined iconHome">home</span>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">ยื่นคำร้องขอความช่วยเหลือ</li>
+      </ol>
+    </nav>
+  </div>
 </div>
 
 <div class="row" style="width: 100%;">
-   <div class="col">
-       
-   </div>
+  <div class="col">
+
+    <div class="row ">
+      <div class="labelText">
+        หมวดหมู่
+      </div>
+      <div class="col">
+        <mat-form-field class="nameWith" appearance="outline" style="width: 98%;margin-left: 1%;margin-right: 1%;">
+          <mat-select>
+            <mat-label>หมวดหมู่</mat-label>
+            <mat-option value="one">ค่าจ้าง</mat-option>
+            <mat-option value="two">ค่าไม่จ้าง</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="labelText">
+        ชื่อ-สกุล ผู้ร้อง
+      </div>
+      <div class="col">
+        <div style="width: 98%;margin-left: 1%;margin-right: 1%;">
+          <mat-form-field class="nameWith" appearance="outline" style="width: 18%;margin-right: 2%;">
+            <mat-label>คำนำหน้า</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 1%;margin-right: 1%;">
+            <mat-label>ชื่อ</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 2%;">
+            <mat-label>สกุล</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="labelText">
+        คำร้อง
+      </div>
+      <div class="col">
+        <mat-form-field class="nameWith" appearance="outline" style="width: 98%;margin-left: 1%;margin-right: 1%;">
+          <textarea matInput rows="4"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="labelText">
+        ชื่อสถานที่ทำงาน
+      </div>
+      <div class="col">
+        <mat-form-field class="nameWith" appearance="outline" style="width: 98%;margin-left: 1%;margin-right: 1%;">
+          <input matInput>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="labelText">
+      </div>
+      <div class="col">
+        <div style="width: 98%;margin-left: 1%;margin-right: 1%;">
+          <mat-form-field class="nameWith" appearance="outline" style="width: 18%;margin-right: 2%;">
+            <mat-label>หมู่</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 1%;margin-right: 1%;">
+            <mat-label>ถนน</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 2%;">
+            <mat-label>ตำบล</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="labelText">
+      </div>
+      <div class="col">
+        <div style="width: 98%;margin-left: 1%;margin-right: 1%;">
+          <mat-form-field class="nameWith" appearance="outline" style="width: 31%;margin-right: 2%;">
+            <mat-label>อำเภอ</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field class="nameWith" appearance="outline" style="width: 32%;margin-left: 1%;margin-right: 1%;">
+            <mat-label>จังหวัด</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field class="nameWith" appearance="outline" style="width: 31%;margin-left: 2%;">
+            <mat-label>รหัสไปรษณีย์</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="labelText">
+        วัน-เวลา
+      </div>
+      <div class="col" style="width: 98%;margin-left: 1%;margin-right: 1%;">
+        <div class="nameWith">
+          <p-calendar [showTime]="true" [showIcon]="true" inputId="icon"></p-calendar>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="labelText">
+        อัปโหลดไฟล์
+      </div>
+      <div class="col" style="width: 98%;margin-left: 1%;margin-right: 1%;">
+        <div class="nameWith">
+          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" [multiple]="true"
+            [maxFileSize]="1000000">
+            <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+        </div>
+      </div>
+    </div>
 
 
+  </div>
 </div>

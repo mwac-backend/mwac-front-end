@@ -46,3 +46,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // should be after your bootstrap imports, it uses bs4 variables, mixins, functions
 @import 'assets/css/toast.css';
 
+.p-calendar {
+  width: 100%;
+  height: 50px;
+}
+
+.p-calendar-w-btn .p-inputtext {
+  background-color: #f0f8ff00;
+}

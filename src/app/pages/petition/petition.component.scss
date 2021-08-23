@@ -1,3 +1,45 @@
 .p-breadcrumb.p-component {
     background: yellowgreen;
 }
+
+.breadcrumb {
+
+    @media (max-width: 820px) {
+        display: none;
+        margin-top: 0px !important; 
+    }
+}
+
+.mgTop {
+    @media (max-width: 820px) {
+        margin-bottom: 10px;
+    }
+    @media (max-width: 820px) {
+        margin-bottom: 15px;
+      
+    }
+}
+
+.nameWith {
+    @media (max-width: 500px) {
+        width: 98% !important;
+        margin-left: 1%!important;
+        margin-right: 1%!important;
+        padding-left: 15px;
+    }
+}
+
+.iconHome {
+    font-size: 21px;
+    color: dimgrey;
+}
+
+.labelText {
+    width: 150px;
+    padding-top: 10px;
+    padding-left: 35px;
+    @media (max-width: 820px) {
+        width: 100%;
+    }
+}
+
