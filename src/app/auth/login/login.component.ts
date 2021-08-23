@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   public myLogin: FormGroup;
   public formConfig = Login.form
 
-  constructor(private messageService: MessageService,private _formBuilder: FormBuilder, public _http: HttpService, private router: Router,public spinner: NgxSpinnerService,) {
+  constructor(private messageService: MessageService, private _formBuilder: FormBuilder, public _http: HttpService, private router: Router, public spinner: NgxSpinnerService,) {
     this.myLogin = this._formBuilder.group({
       [this.formConfig.username.field]: new FormControl({value: null, disabled: false}),
       [this.formConfig.password.field]: new FormControl({value: null, disabled: false}),
@@ -38,25 +38,38 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.spinner.show().then(r => {})
+    this.spinner.show().then(r => {
+    })
     console.log(this.myLogin.value)
     this._http.post_no_token(API_URL.login, this.myLogin.value).subscribe(
       (res) => {
-        this.spinner.hide().then(r => {})
-        console.log(res)
-        localStorage.setItem('token', res.accessToken )
-        this.router.navigate(['/dashboard']).then(r => {
+        this.spinner.hide().then(r => {
         })
+        console.log(res)
+        localStorage.setItem('token', res.accessToken)
+        this._http.get(API_URL.userInfo, {}).subscribe(
+          (res) => {
+            console.log(res)
+            localStorage.setItem('userDetail', res)
+            this.router.navigate(['/dashboard']).then(r => {
+            })
+          },
+          (error) => {
+            console.error(error)
+          }
+        )
       },
       (error) => {
         console.error(error)
-        this.spinner.hide().then(r => {})
+        this.spinner.hide().then(r => {
+        })
         this.showErrorNoti(error.statusText)
       }
     )
   }
 
-  showErrorNoti(error:string){
-    this.messageService.add({key: 'tr', severity:'error', summary: 'Error', detail: error});
+  showErrorNoti(error: string) {
+    this.messageService.add({key: 'tr', severity: 'error', summary: 'Error', detail: error});
   }
+
 }

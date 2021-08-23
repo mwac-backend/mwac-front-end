@@ -19,7 +19,8 @@ export class InterceptorService {
   ): any {
     const encrypted = localStorage.getItem('token');
     if (encrypted) {
-      const token = this.encrypt.decryptionAES(encrypted);
+      // const token = this.encrypt.decryptionAES(encrypted);
+      const token = encrypted
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,

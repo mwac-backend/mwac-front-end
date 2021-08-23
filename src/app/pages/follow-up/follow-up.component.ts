@@ -10,13 +10,15 @@ import {LayoutComponent} from "../../shared/layout/layout.component";
   styleUrls: ['./follow-up.component.scss']
 })
 export class FollowUpComponent implements OnInit {
+  public userDetail:any = {}
   public submissionControl: submission[] = []
-
   constructor(public _http: HttpService, private router: Router,public layout: LayoutComponent) {
   }
 
   ngOnInit(): void {
     this.loaddata()
+    this.userDetail = localStorage.getItem('userDetail');
+
   }
 
   loaddata() {
