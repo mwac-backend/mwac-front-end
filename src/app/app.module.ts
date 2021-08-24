@@ -40,6 +40,7 @@ import {FollowUpComponent} from './pages/follow-up/follow-up.component';
 import {FollowUpManageComponent} from './pages/follow-up/follow-up-manage/follow-up-manage.component'
 import {DateFormatPipe} from './shared/pipe/date-format.pipe'
 import {ToastModule} from 'primeng/toast';
+import { CountDatePipe } from './shared/pipe/count-date.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {ToastModule} from 'primeng/toast';
     PetitionComponent,
     FollowUpComponent,
     FollowUpManageComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    CountDatePipe
   ],
   imports: [
     BrowserModule,

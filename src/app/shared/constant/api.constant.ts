@@ -6,5 +6,5 @@ export class API_URL {
   static userInfo = API_URL.BASE_URL + '/user/info'
 
   static submissionOrder = API_URL.BASE_URL + '/submission/order'
-  static orderDocument = API_URL.BASE_URL + '/order/document'
+  static orderDocument = API_URL.BASE_URL + '/submission/order/document'
 }

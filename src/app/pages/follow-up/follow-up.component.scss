@@ -1,3 +1,11 @@
+.card .header {
+  position: relative;
+  display: flex;
+  width: 100%;
+  color: #555;
+  padding: 10px 15px;
+  line-height: 30px;
+}
 :host ::ng-deep {
   .p-datatable-responsive-demo .p-datatable-tbody > tr > td .p-column-title {
     display: none;
@@ -16,7 +24,7 @@
         .p-datatable-tbody > tr > td {
           text-align: left;
           display: block;
-          width: 100%;
+          width: 90%;
           float: left;
           clear: left;
           border: 0 none;
@@ -37,3 +45,4 @@
     }
   }
 }
+

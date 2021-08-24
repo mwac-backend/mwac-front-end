@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
 export class SaveDataService {
 
   constructor() { }
-  public submissionControl:any = {}
+  public submissionControl:any = null
 }
