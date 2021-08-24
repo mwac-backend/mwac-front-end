@@ -1,1 +1,12 @@
 <p>follow-up-manage works!</p>
+<div class="card">
+  <div class="card-body">
+    {{hade|json}}
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let a of body">
+    {{a|json}}
+  </li>
+</ul>

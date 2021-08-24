@@ -1,26 +1,32 @@
 <div class="card">
-  <p-table responsiveLayout="scroll" [value]="submissionControl">
+  <p-table responsiveLayout="scroll" [value]="submissionControl" selectionMode="single">
     <ng-template pTemplate="caption">
       ติดตามการช่วยเหลือ
     </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th>คำนำหน้า </th>
+        <th>id</th>
+        <th>คำนำหน้า</th>
         <th>ชื่อ</th>
         <th>สกุล</th>
         <th>คำร้อง</th>
         <th>หน่วยงาน</th>
         <th>สถานะ</th>
+        <th style="width:4rem"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-submissionControl let-columns="columns">
       <tr>
+        <td>{{submissionControl.id}}</td>
         <td>{{submissionControl.title}}</td>
         <td>{{submissionControl.firstName }}</td>
         <td>{{submissionControl.lastName}}</td>
         <td>{{submissionControl.petition}}</td>
         <td>{{submissionControl.agencyNameTH}}</td>
         <td>{{submissionControl.submissionControlStatusNameTH}}</td>
+        <td>
+          <button type="button"  (click)="onRowSelect(submissionControl)">view</button>
+        </td>
       </tr>
     </ng-template>
   </p-table>
