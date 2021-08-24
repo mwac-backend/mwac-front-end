@@ -5,8 +5,13 @@ import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+
+// ============== OTHER ===============
 import {NgxSpinnerModule} from "ngx-spinner";
 import {ToastrModule} from 'ngx-toastr';
+import { NgxFileDragDropModule } from 'ngx-file-drag-drop';
+
+
 // ===== PRIME NG MODULE ======
 import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
@@ -19,6 +24,8 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MessageService} from 'primeng/api';
 import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
+
+
 // === MATERIAL MODULE======
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -81,6 +88,7 @@ import {ToastModule} from 'primeng/toast';
     MatSelectModule,
     CalendarModule,
     FileUploadModule,
+    NgxFileDragDropModule,
 
   ],
   exports: [

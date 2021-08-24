@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { FileValidators } from 'ngx-file-drag-drop';
 import {MenuItem, MessageService} from 'primeng/api';
 
 @Component({
@@ -37,6 +39,11 @@ export class PetitionComponent implements OnInit {
 
   uploadedFiles: any[] = [];
 
+  fileControl = new FormControl(
+    [],
+    [FileValidators.maxFileCount(2)]
+  )
+
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -46,12 +53,12 @@ export class PetitionComponent implements OnInit {
   }
 
 
-  onUpload(event:any) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
-    }
-
+  onUploadFile(file: any) {
+    console.log(this.fileControl.value);
+    
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-}
+  }
+
+
 
 }
