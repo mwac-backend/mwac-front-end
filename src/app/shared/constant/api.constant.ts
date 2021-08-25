@@ -7,4 +7,6 @@ export class API_URL {
 
   static submissionOrder = API_URL.BASE_URL + '/submission/order'
   static orderDocument = API_URL.BASE_URL + '/order/document'
+
+  static apiAgency = API_URL.BASE_URL + '/agency'
 }
