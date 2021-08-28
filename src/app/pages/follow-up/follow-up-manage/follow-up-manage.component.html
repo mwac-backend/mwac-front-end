@@ -23,21 +23,60 @@
           <div class="container">
             <div class="row">
               <div class="col-md-10">
-                <ul class="left-timeline">
-                  <li *ngFor="let list of body">
-                    <time class="left-time" datetime="2017-11-04T03:45"><span>{{list.createddate | dateFormat:'HH:mm'}} น.</span>
-                      <span>{{list.createddate | countDate}}</span></time>
-                    <div class="left-icon">
-                      <span class="material-icons-round">face</span>
-<!--                      <img src="assets/images/user/user2.jpg" alt="">-->
-                    </div>
-                    <div class="left-label">
-<!--                      <h2><a href="#" onClick="return false;">John Deo</a> <span>posted a-->
-<!--                          status update</span></h2>-->
-                      <p>{{list.remark}}</p>
-                    </div>
-                  </li>
-                </ul>
+                <mat-accordion class="example-headers-align">
+                  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        ไทม์ไลน์ 1
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        รายละเอียดไทม์ไลน์
+                        <mat-icon>timeline</mat-icon>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <br>
+                    <ul class="left-timeline">
+
+                      <li *ngFor="let list of order">
+                        <time class="left-time" datetime="2017-11-04T03:45"><span>{{list.createDate | dateFormat:'HH:mm'}} น.</span>
+                          <span>{{list.createDate  | countDate}}</span></time>
+                        <div class="left-icon">
+                          <span class="material-icons-round">face</span>
+                          <!--                      <img src="assets/images/user/user2.jpg" alt="">-->
+                        </div>
+                        <div class="left-label">
+                          <!--                      <h2><a href="#" onClick="return false;">John Deo</a> <span>posted a-->
+                          <!--                          status update</span></h2>-->
+                          <p>{{list.remark}}</p>
+                          <div *ngFor="let Document of list.submissionOrderDocument">
+                            <p>{{Document.pathFile}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="left-time" datetime="2017-11-04T03:45"><span></span>
+                          <span></span></time>
+                        <div class="left-icon">
+                          <span class="material-icons-round">face</span>
+                          <!--                      <img src="assets/images/user/user2.jpg" alt="">-->
+                        </div>
+                        <div class="left-label">
+                          <!--                      <h2><a href="#" onClick="return false;">John Deo</a> <span>posted a-->
+                          <!--                          status update</span></h2>-->
+                          <p></p>
+                          <div >
+                            <p></p>
+                          </div>
+                        </div>
+                      </li>
+
+                    </ul>
+                    <mat-action-row>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </mat-accordion>
+                <br>
 <!--                <ul class="left-timeline">-->
 <!--                  <li>-->
 <!--                    <time class="left-time" datetime="2017-11-04T18:30"><span class="hidden">25/12/2017</span>-->

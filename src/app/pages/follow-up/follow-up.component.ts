@@ -25,7 +25,6 @@ export class FollowUpComponent implements OnInit {
   loaddata(agencyID:string|number ) {
     this.layout.sShow()
     this._http.get(API_URL.submission_control, {
-      agencyId: 1,
       endDate: '',
       startDate: ''
     }).subscribe(

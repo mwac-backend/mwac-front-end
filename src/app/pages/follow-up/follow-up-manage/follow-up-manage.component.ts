@@ -20,23 +20,21 @@ export class FollowUpManageComponent implements OnInit {
     console.log(this.SaveDataService.submissionControl)
     if (this.SaveDataService.submissionControl) {
       this.data = this.SaveDataService.submissionControl
-      this.loadHade(this.data)
-      this.loadBody(this.data)
+      this.loadorder(this.data)
 
     } else {
       this.router.navigate(['follow-up'])
     }
   }
 
-  public hade: any = []
-  public body: any = []
+  public order: any = []
 
-  loadHade(data: any) {
+  loadorder(data: any) {
     this.layout.sShow()
     this._http.get(API_URL.submissionOrder, {id:data.id}).subscribe(
       (res) => {
         console.log(res)
-        this.hade = res
+        this.order = res
         this.layout.shide()
       },
       (error) => {
@@ -44,18 +42,17 @@ export class FollowUpManageComponent implements OnInit {
       }
     )
   }
+  step = 0;
 
-  loadBody(data: any) {
-    this.layout.sShow()
-    this._http.get(API_URL.orderDocument, {submissionOrderId:data.id}).subscribe(
-      (res) => {
-        console.log(res)
-        this.body = res
-        this.layout.shide()
-      },
-      (error) => {
-        console.error(error)
-      }
-    )
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }
