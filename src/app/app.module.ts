@@ -10,7 +10,11 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {ToastrModule} from 'ngx-toastr';
 import { NgxFileDragDropModule } from 'ngx-file-drag-drop';
-
+import {
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+  PerfectScrollbarConfigInterface,
+} from "ngx-perfect-scrollbar";
 
 // ===== PRIME NG MODULE ======
 import {SidebarModule} from 'primeng/sidebar';
@@ -35,7 +39,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 // ===== COMPONENT ======
 import {LayoutComponent} from './shared/layout/layout.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
@@ -48,7 +52,11 @@ import {FollowUpManageComponent} from './pages/follow-up/follow-up-manage/follow
 import {DateFormatPipe} from './shared/pipe/date-format.pipe'
 import {ToastModule} from 'primeng/toast';
 import { CountDatePipe } from './shared/pipe/count-date.pipe';
-
+// config
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+  wheelPropagation: false,
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,18 +99,25 @@ import { CountDatePipe } from './shared/pipe/count-date.pipe';
     CalendarModule,
     FileUploadModule,
     NgxFileDragDropModule,
-
+    PerfectScrollbarModule,
+    MatFormFieldModule,
   ],
   exports: [
     DateFormatPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{
+  providers: [
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true,
-  }, MessageService,
-  ],
+    },
+    MessageService,
+    {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+      ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

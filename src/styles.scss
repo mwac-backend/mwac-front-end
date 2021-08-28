@@ -45,7 +45,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // or import a bootstrap 4 alert styled design (SASS ONLY)
 // should be after your bootstrap imports, it uses bs4 variables, mixins, functions
 @import 'assets/css/toast.css';
-
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
 .p-calendar {
   width: 100%;
   height: 50px;
