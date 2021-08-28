@@ -51,6 +51,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 50px;
 }
 
+.p-calendar  .p-datepicker {
+  min-width: 200px !important;
+}
+
+
 .p-calendar-w-btn .p-inputtext {
   background-color: #f0f8ff00;
+}
+
+
+#fileDragDrop{
+  .placeholder{
+      background-color: revert;
+    }
 }

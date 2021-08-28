@@ -30,12 +30,12 @@ export class FollowUpManageComponent implements OnInit {
   public order: any = []
 
   loadorder(data: any) {
-    this.layout.sShow()
+    this.layout.show()
     this._http.get(API_URL.submissionOrder, {id:data.id}).subscribe(
       (res) => {
         console.log(res)
         this.order = res
-        this.layout.shide()
+        this.layout.hide()
       },
       (error) => {
         console.error(error)

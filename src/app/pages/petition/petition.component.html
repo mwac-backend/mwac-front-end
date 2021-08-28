@@ -13,9 +13,18 @@
     </nav>
   </div>
 </div>
-
-<div class="row" style="width: 100%;">
+<form name="formPetition" [formGroup]="formPetition" >
+  <div class="row" style="width: 100%;">
   <div class="col">
+    <div class="row ">
+      <div class="col nameWith">
+        <div class="head">
+          แบบยื่นคำร้อง
+        </div>
+      </div>
+
+
+    </div>
 
     <div class="row ">
       <div class="labelText">
@@ -23,10 +32,9 @@
       </div>
       <div class="col">
         <mat-form-field class="nameWith" appearance="outline" style="width: 98%;margin-left: 1%;margin-right: 1%;">
-          <mat-select>
-            <mat-label>หมวดหมู่</mat-label>
-            <mat-option value="one">ค่าจ้าง</mat-option>
-            <mat-option value="two">ค่าไม่จ้าง</mat-option>
+          <mat-label></mat-label>
+          <mat-select formControlName="{{formConfig.agencyID.field}}" >
+            <mat-option *ngFor="let item of agencyList" [value]="item.id">{{item.agencyNameTH}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -39,18 +47,18 @@
       <div class="col">
         <div style="width: 98%;margin-left: 1%;margin-right: 1%;">
           <mat-form-field class="nameWith" appearance="outline" style="width: 18%;margin-right: 2%;">
-            <mat-label>คำนำหน้า</mat-label>
-            <input matInput>
+            <mat-label >คำนำหน้า</mat-label>
+            <input matInput formControlName="{{formConfig.title.field}}">
           </mat-form-field>
 
           <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 1%;margin-right: 1%;">
             <mat-label>ชื่อ</mat-label>
-            <input matInput>
+            <input matInput formControlName="{{formConfig.firstName.field}}">
           </mat-form-field>
 
           <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 2%;">
             <mat-label>สกุล</mat-label>
-            <input matInput>
+            <input matInput formControlName="{{formConfig.lastName.field}}">
           </mat-form-field>
         </div>
 
@@ -63,7 +71,7 @@
       </div>
       <div class="col">
         <mat-form-field class="nameWith" appearance="outline" style="width: 98%;margin-left: 1%;margin-right: 1%;">
-          <textarea matInput rows="4"></textarea>
+          <textarea matInput rows="4" formControlName="{{formConfig.petition.field}}"></textarea>
         </mat-form-field>
       </div>
     </div>
@@ -74,7 +82,7 @@
       </div>
       <div class="col">
         <mat-form-field class="nameWith" appearance="outline" style="width: 98%;margin-left: 1%;margin-right: 1%;">
-          <input matInput>
+          <input matInput formControlName="{{formConfig.office.field}}">
         </mat-form-field>
       </div>
     </div>
@@ -84,19 +92,19 @@
       </div>
       <div class="col">
         <div style="width: 98%;margin-left: 1%;margin-right: 1%;">
-          <mat-form-field class="nameWith" appearance="outline" style="width: 18%;margin-right: 2%;">
-            <mat-label>หมู่</mat-label>
-            <input matInput>
+          <mat-form-field class="nameWith" appearance="outline" style="width: 58%;margin-right: 2%;">
+            <mat-label>ที่อยู่</mat-label>
+            <input matInput formControlName="{{formConfig.address.field}}">
           </mat-form-field>
 
-          <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 1%;margin-right: 1%;">
+          <!-- <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 1%;margin-right: 1%;">
             <mat-label>ถนน</mat-label>
             <input matInput>
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field class="nameWith" appearance="outline" style="width: 38%;margin-left: 2%;">
-            <mat-label>ตำบล</mat-label>
-            <input matInput>
+            <mat-label >ตำบล</mat-label>
+            <input matInput formControlName="{{formConfig.subDistrict.field}}">
           </mat-form-field>
         </div>
 
@@ -110,17 +118,17 @@
         <div style="width: 98%;margin-left: 1%;margin-right: 1%;">
           <mat-form-field class="nameWith" appearance="outline" style="width: 31%;margin-right: 2%;">
             <mat-label>อำเภอ</mat-label>
-            <input matInput>
+            <input matInput formControlName="{{formConfig.district.field}}">
           </mat-form-field>
 
           <mat-form-field class="nameWith" appearance="outline" style="width: 32%;margin-left: 1%;margin-right: 1%;">
             <mat-label>จังหวัด</mat-label>
-            <input matInput>
+            <input matInput formControlName="{{formConfig.province.field}}">
           </mat-form-field>
 
           <mat-form-field class="nameWith" appearance="outline" style="width: 31%;margin-left: 2%;">
             <mat-label>รหัสไปรษณีย์</mat-label>
-            <input matInput>
+            <input matInput formControlName="{{formConfig.postcode.field}}">
           </mat-form-field>
         </div>
 
@@ -133,7 +141,7 @@
       </div>
       <div class="col" style="width: 98%;margin-left: 1%;margin-right: 1%;">
         <div class="nameWith">
-          <p-calendar  [showTime]="true" [showIcon]="true" inputId="icon"></p-calendar>
+          <p-calendar formControlName="{{formConfig.petitionDate.field}}" [showTime]="true" [showIcon]="true" inputId="icon"></p-calendar>
         </div>
       </div>
     </div>
@@ -144,18 +152,32 @@
       </div>
       <div class="col" style="width: 98%;margin-left: 1%;margin-right: 1%;">
         <div class="nameWith">
-          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" [multiple]="true"
-            [maxFileSize]="1000000">
-            <ng-template pTemplate="content">
-              <ul *ngIf="uploadedFiles.length">
-                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-              </ul>
-            </ng-template>
-          </p-fileUpload>
+          <ngx-file-drag-drop id="fileDragDrop" activeBorderColor="#3F51B5" style="min-width: 100%;" [multiple]="true"
+            [formControl]="fileControl" (change)="onUploadFile($event)">
+          </ngx-file-drag-drop>
         </div>
       </div>
     </div>
 
 
+    <div class="row " style="margin: 15px 0px;">
+
+      <div class="col nameWith">
+        <div>
+          <button (click)="submitData();" style="width: 100%;background-color: var(--blue-500);" pButton pRipple type="button"
+            label="บันทึก"></button>
+        </div>
+      </div>
+      <div class="col nameWith">
+        <div>
+          <button style="width: 100%;background-color: #fd0018fa;" pButton pRipple type="button" label="ยกเลิก"
+            class="p-button-danger"></button>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </div>
+</form>
+

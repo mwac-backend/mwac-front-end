@@ -61,11 +61,11 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     this.cd.detectChanges();
   }
 
-  sShow() {
+  show() {
     this.spinner.show();
   }
 
-  shide() {
+  hide() {
     this.spinner.hide();
   }
   showSuccess() {

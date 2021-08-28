@@ -23,18 +23,18 @@ export class FollowUpComponent implements OnInit {
   }
 
   loaddata(agencyID:string|number ) {
-    this.layout.sShow()
+    this.layout.show()
     this._http.get(API_URL.submission_control, {
       endDate: '',
       startDate: ''
     }).subscribe(
       (res) => {
         console.log(res)
-        this.layout.shide()
+        this.layout.hide()
         this.submissionControl = res
       },
       (error) => {
-        this.layout.shide()
+        this.layout.hide()
         console.error(error)
       }
     )

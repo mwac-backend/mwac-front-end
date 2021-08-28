@@ -12,10 +12,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.layout.sShow()
+    // this.layout.show()
   }
   test(){
-    this.layout.sShow()
+    this.layout.show()
     // this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'Test', detail: 'ทดสอบจ้า'});
   }
 }
