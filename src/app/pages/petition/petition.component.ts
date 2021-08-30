@@ -38,7 +38,7 @@ export class PetitionComponent implements OnInit {
       [this.formConfig.agencyID.field]: new FormControl({ value: null, disabled: false }, Validators.compose([Validators.required])),
       [this.formConfig.petitionDate.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.petition.field]: new FormControl({ value: null, disabled: false }),
-      [this.formConfig.office.field]: new FormControl({ value: null, disabled: false }),
+      [this.formConfig.office.field]: new FormControl({ value: null, disabled: false }, Validators.compose([Validators.required])),
       [this.formConfig.address.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.subDistrict.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.district.field]: new FormControl({ value: null, disabled: false }),
@@ -55,16 +55,25 @@ export class PetitionComponent implements OnInit {
     // this.home = {icon: 'pi pi-home', routerLink: '/'};
   }
 
+  // this.layout.showMessageNoti({key: 'tr', severity:'warn', summary: 'Error', detail:'Add file'});
+  // this.layout.showMessageNoti({key: 'tr', severity:'error', summary: 'Error', detail:'Add file'});
+  // this.layout.showMessageNoti({key: 'tr', severity:'success', summary: 'Error', detail:'Add file'});
+  // this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'Error', detail:'Add file'});
 
   onUploadFile(file: any) {
-    console.log(this.fileControl.value);
+    if (this.fileControl.value.length > 5) {
+      this.fileControl.value.splice(5, this.fileControl.value.length - 5);
+      this.layout.showMessageNoti({ key: 'tr', severity: 'warn', summary: 'Warning', detail: 'You can add up to 5 files.' });
+    } else {
+      this.layout.showMessageNoti({ key: 'tr', severity: 'success', summary: 'Success', detail: 'Add files success.' });
+    }
 
-    this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
+    console.log(this.fileControl.value);
   }
 
   loadAgencyList() {
     this.layout.show();
-    this._http.get(API_URL.apiAgency, {}).subscribe(
+    this._http.get(API_URL.apiAgency, { }).subscribe(
       (res) => {
         if (res) {
           this.agencyList = res;
@@ -81,36 +90,24 @@ export class PetitionComponent implements OnInit {
   }
 
   submitData() {
-    // var formData: any = new FormData();
-    // formData.append(this.formConfig.id.field, this.formPetition.value[this.formConfig.id.field]);
-    // formData.append(this.formConfig.title.field, this.formPetition.value[this.formConfig.title.field]);
-    // formData.append(this.formConfig.firstName.field, this.formPetition.value[this.formConfig.firstName.field]);
-    // formData.append(this.formConfig.lastName.field, this.formPetition.value[this.formConfig.lastName.field]);
-    // formData.append(this.formConfig.agencyID.field, this.formPetition.value[this.formConfig.agencyID.field]);
-    // formData.append(this.formConfig.petitionDate.field,moment(this.formPetition.value[this.formConfig.petitionDate.field]).format('YYYY-MM-DD HH:mm') );
-    // formData.append(this.formConfig.petition.field, this.formPetition.value[this.formConfig.petition.field]);
-    // formData.append(this.formConfig.office.field, this.formPetition.value[this.formConfig.office.field]);
-    // formData.append(this.formConfig.address.field, this.formPetition.value[this.formConfig.address.field]);
-    // formData.append(this.formConfig.subDistrict.field, this.formPetition.value[this.formConfig.subDistrict.field]);
-    // formData.append(this.formConfig.district.field, this.formPetition.value[this.formConfig.district.field]);
-    // formData.append(this.formConfig.province.field, this.formPetition.value[this.formConfig.province.field]);
-    // formData.append(this.formConfig.postcode.field, this.formPetition.value[this.formConfig.postcode.field]);
-    // formData.append(this.formConfig.submissionControlStatusID.field, this.formPetition.value[this.formConfig.submissionControlStatusID.field]);
-
-    
     if (!this.formPetition.invalid) {
-      const datePetition =moment(this.formPetition.value['petitionDate']).format('YYYY-MM-DD HH:mm');
-      console.log(datePetition);
+
+      const datePetition = moment(this.formPetition.value['petitionDate']).format('YYYY-MM-DD HH:mm');
       this.formPetition.value['petitionDate'] = datePetition;
-      // this.formPetition.controls['petitionDate'].setValue(datePetition);
-      console.log(this.formPetition.value);
+
       this.layout.show();
       this._http.post(API_URL.submission_control, this.formPetition.value).subscribe(
         (res) => {
           if (res) {
             console.log(res);
-            this.layout.showMessageNoti({ key: 'tr', severity: 'success', summary: 'Success !!', detail: 'save data success' });
-            this.layout.hide();
+            if (this.fileControl.value.length > 0) {
+              this.saveSubmissionDocument(res[0].submissionControlID);
+            } else {
+              this.layout.showMessageNoti({ key: 'tr', severity: 'success', summary: 'Success !!', detail: 'save data success' });
+              this.layout.hide();
+              this.router.navigate(['/follow-up']);
+            }
+            this.formPetition.reset();
           }
         },
         (error) => {
@@ -120,11 +117,36 @@ export class PetitionComponent implements OnInit {
         }
       )
 
-    }else{
+    } else {
       this.layout.showMessageNoti({ key: 'tr', severity: 'warn', summary: 'warning !!', detail: 'กรุณาตรวสอบความถูกต้อง' });
-       
     }
 
+  }
+
+  saveSubmissionDocument(submissionControlId: any) {
+
+    var formData: any = new FormData();
+    formData.append('id', '');
+    formData.append('submissionControlId', submissionControlId);
+    formData.append('remark', 'Add submission document.');
+
+    this.fileControl.value.forEach((element: any) => {
+      formData.append('pathFile', element);
+    });
+
+    this._http.post(API_URL.submission_control_document, formData).subscribe(
+      (res) => {
+        this.layout.showMessageNoti({ key: 'tr', severity: 'success', summary: 'Success !!', detail: 'save data success' });
+        this.layout.hide();
+        this.fileControl.value.splice(0, this.fileControl.value.length);
+        this.router.navigate(['/follow-up']);
+      },
+      (error) => {
+        console.error(error);
+        this.layout.hide();
+        this.layout.showMessageNoti({ key: 'tr', severity: 'error', summary: 'Error !!', detail: error.status });
+      }
+    )
   }
 
 

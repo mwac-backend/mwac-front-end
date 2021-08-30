@@ -21,7 +21,7 @@
       </div>
       <div class="body">
 
-        <form name="formPetition" [formGroup]="formPetition">
+        <form name="formPetition" [formGroup]="formPetition"  (ngSubmit)="submitData();">
           <div class="row" style="width: 100%;">
             <div class="col">
               <div class="row ">
@@ -176,8 +176,8 @@
 
                 <div class="col nameWith">
                   <div>
-                    <button (click)="submitData();" style="width: 100%;background-color: var(--blue-500);" pButton
-                      pRipple type="button" label="บันทึก"></button>
+                    <button style="width: 100%;background-color: var(--blue-500);" pButton
+                      pRipple type="submit" label="บันทึก"></button>
                   </div>
                 </div>
                 <div class="col nameWith">
