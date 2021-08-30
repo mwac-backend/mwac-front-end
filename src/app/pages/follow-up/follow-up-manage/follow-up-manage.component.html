@@ -24,11 +24,11 @@
           <div class="container">
             <div class="row">
               <div class="col-xs-7 col-sm-12 col-md-7 col-lg-7">
-                <mat-accordion class="example-headers-align">
-                  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                <mat-accordion class="example-headers-align" *ngFor="let key of order_key;let i = index">
+                  <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
-                        ไทม์ไลน์ 1
+                        ไทม์ไลน์ {{i + 1}}
                       </mat-panel-title>
                       <mat-panel-description>
                         รายละเอียดไทม์ไลน์
@@ -38,17 +38,19 @@
                     <br>
                     <ul class="left-timeline">
 
-                      <li *ngFor="let list of order">
+                      <li *ngFor="let list of order[key]">
                         <time class="left-time" datetime="2017-11-04T03:45">
                           <span>{{list.createDate | dateFormat:'HH:mm'}} น.</span>
                           <span>{{list.createDate  | countDate}}</span></time>
-                        <div class="left-icon">
-                          <span class="material-icons-round">face</span>
-                          <!--                      <img src="assets/images/user/user2.jpg" alt="">-->
-                        </div>
+                        <!--                        <div class="left-icon"></div>-->
+                        <img class="left-icon"
+                             [src]="list.createByPhotoPath ? list.createByPhotoPath : 'assets/images/profile_user.png'"
+                             onerror="this.src='assets/images/profile_user.png'" alt="">
+
                         <div class="left-label">
-                          <!--                      <h2><a href="#" onClick="return false;">John Deo</a> <span>posted a-->
-                          <!--                          status update</span></h2>-->
+                          <h2><a href="#"
+                                 onClick="return false;">{{list.createByName}}</a><strong> {{list.agencyNameTH}} </strong>
+                            <span>{{list.submissionOrderStatusNameTH}}</span></h2>
                           <p>{{list.remark}}</p>
                           <div *ngFor="let Document of list.submissionOrderDocument">
                             <p>{{Document.pathFile}}</p>
@@ -59,142 +61,145 @@
                         <time class="left-time" datetime="2017-11-04T03:45"><span></span>
                           <span></span></time>
                         <div class="left-icon">
-                          <span class="material-icons-round">face</span>
-                          <!--                      <img src="assets/images/user/user2.jpg" alt="">-->
                         </div>
-                        <div class="left-label">
-                          <!--                      <h2><a href="#" onClick="return false;">John Deo</a> <span>posted a-->
-                          <!--                          status update</span></h2>-->
-                          <p></p>
+                        <div class="left-label" style="cursor: pointer" (click)="openDialog(key)">
+                          <p>
+                          </p>
                           <div>
-                            <p></p>
+                            <p>
+                              เพิ่มไทม์ไลน์
+                            </p>
                           </div>
                         </div>
                       </li>
-
                     </ul>
                     <mat-action-row>
-                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                      <button *ngIf="i !== 0" mat-button color="warn" (click)="prevStep()">ไทม์ไลน์ก่อนหน้า</button>
+                      <button mat-button color="primary" (click)="nextStep()">ไทม์ไลน์ต่อไป</button>
                     </mat-action-row>
                   </mat-expansion-panel>
                 </mat-accordion>
                 <br>
-                <!--                <ul class="left-timeline">-->
-                <!--                  <li>-->
-                <!--                    <time class="left-time" datetime="2017-11-04T18:30"><span class="hidden">25/12/2017</span>-->
-                <!--                      <span class="large">Now</span></time>-->
-                <!--                    <div class="left-icon"><img src="assets/images/user/user1.jpg" alt="">-->
-                <!--                    </div>-->
-                <!--                    <div class="left-label empty"> <span>No Activity</span> </div>-->
-                <!--                  </li>-->
-                <!--                  <li>-->
-                <!--                    <time class="left-time" datetime="2017-11-04T03:45"><span>03:45 AM</span>-->
-                <!--                      <span>Today</span></time>-->
-                <!--                    <div class="left-icon"><img src="assets/images/user/user2.jpg" alt="">-->
-                <!--                    </div>-->
-                <!--                    <div class="left-label">-->
-                <!--                      <h2><a href="#" onClick="return false;">John Deo</a> <span>posted a-->
-                <!--                          status update</span></h2>-->
-                <!--                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean-->
-                <!--                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque-->
-                <!--                        penatibus et magnis dis parturient montes, nascetur ridiculus mus.-->
-                <!--                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,-->
-                <!--                        sem. Nulla consequat massa quis enim.</p>-->
-                <!--                    </div>-->
-                <!--                  </li>-->
-                <!--                  <li>-->
-                <!--                    <time class="left-time" datetime="2017-11-03T13:22"><span>01:22 PM</span>-->
-                <!--                      <span>Yesterday</span></time>-->
-                <!--                    <div class="left-icon"> <img src="assets/images/user/user3.jpg" alt="">-->
-                <!--                    </div>-->
-                <!--                    <div class="left-label">-->
-                <!--                      <h2><a href="#" onClick="return false;">Job Meeting</a></h2>-->
-                <!--                      <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>-->
-                <!--                    </div>-->
-                <!--                  </li>-->
-                <!--                  <li>-->
-                <!--                    <time class="left-time" datetime="2017-10-22T12:13"><span>12:13 PM</span>-->
-                <!--                      <span>Two weeks ago</span></time>-->
-                <!--                    <div class="left-icon"><img src="assets/images/user/user4.jpg" alt="">-->
-                <!--                    </div>-->
-                <!--                    <div class="left-label">-->
-                <!--                      <h2><a href="#" onClick="return false;">Arlind Nushi</a> <span>checked in-->
-                <!--                          at</span>-->
-                <!--                        <a href="#" onClick="return false;">New York</a></h2>-->
-                <!--                      <blockquote>-->
-                <!--                        <p class="blockquote blockquote-primary">-->
-                <!--                          "It is a long established fact that a reader will be distracted-->
-                <!--                          by the readable content of a page when looking at its layout."-->
-                <!--                          <br>-->
-                <!--                          <small>-->
-                <!--                            - Isabella-->
-                <!--                          </small>-->
-                <!--                        </p>-->
-                <!--                      </blockquote>-->
-                <!--                      <div class="row clearfix">-->
-                <!--                        <div class="col-lg-12">-->
-                <!--                          <div class="map m-t-10">-->
-                <!--                            <iframe-->
-                <!--                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.91477011208!2d-74.11976308802028!3d40.69740344230033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1508039335245"></iframe>-->
-                <!--                          </div>-->
-                <!--                        </div>-->
-                <!--                      </div>-->
-                <!--                    </div>-->
-                <!--                  </li>-->
-                <!--                  <li>-->
-                <!--                    <time class="left-time" datetime="2017-10-22T12:13"><span>12:13 PM</span>-->
-                <!--                      <span>Two weeks ago</span></time>-->
-                <!--                    <div class="left-icon"><img src="assets/images/user/user5.jpg" alt="">-->
-                <!--                    </div>-->
-                <!--                    <div class="left-label">-->
-                <!--                      <h2><a href="#" onClick="return false;">Eroll Maxhuni</a>-->
-                <!--                        <span>uploaded</span>-->
-                <!--                        4 <span>new photos to album</span> <a href="#" onClick="return false;">Summer-->
-                <!--                          Trip</a></h2>-->
-                <!--                      <blockquote>Pianoforte principles our unaffected not for astonished-->
-                <!--                        travelling are particular.</blockquote>-->
-                <!--                      <div class="row">-->
-                <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;"><img-->
-                <!--                          src="assets/images/user/usrbig1.jpg" alt="" class="img-fluid img-thumbnail m-t-30"></a>-->
-                <!--                        </div>-->
-                <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;">-->
-                <!--                          <img src="assets/images/user/usrbig5.jpg" alt="" class="img-fluid img-thumbnail m-t-30"></a>-->
-                <!--                        </div>-->
-                <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;">-->
-                <!--                          <img src="assets/images/user/usrbig6.jpg" alt="" class="img-fluid img-thumbnail m-t-30">-->
-                <!--                        </a> </div>-->
-                <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;">-->
-                <!--                          <img src="assets/images/user/usrbig7.jpg" alt="" class="img-fluid img-thumbnail m-t-30">-->
-                <!--                        </a> </div>-->
-                <!--                      </div>-->
-                <!--                    </div>-->
-                <!--                  </li>-->
-                <!--                  <li>-->
-                <!--                    <time class="left-time" datetime="2017-11-03T13:22"><span>01:22 PM</span>-->
-                <!--                      <span>Two weeks ago</span></time>-->
-                <!--                    <div class="left-icon"> <img src="assets/images/user/user6.jpg" alt="">-->
-                <!--                    </div>-->
-                <!--                    <div class="left-label">-->
-                <!--                      <h2><a href="#" onClick="return false;">Job Meeting</a></h2>-->
-                <!--                      <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>-->
-                <!--                    </div>-->
-                <!--                  </li>-->
-                <!--                  <li>-->
-                <!--                    <time class="left-time" datetime="2017-10-22T12:13"><span>12:13 PM</span>-->
-                <!--                      <span>Month ago</span></time>-->
-                <!--                    <div class="left-icon"><img src="assets/images/user/user7.jpg" alt="">-->
-                <!--                    </div>-->
-                <!--                    <div class="left-label">-->
-                <!--                      <h2><a href="#" onClick="return false;">Arlind Nushi</a> <span>checked in-->
-                <!--                          at</span>-->
-                <!--                        <a href="#" onClick="return false;">Laborator</a></h2>-->
-                <!--                      <blockquote>Great place, feeling like in home.</blockquote>-->
-                <!--                    </div>-->
-                <!--                  </li>-->
-                <!--                </ul>-->
+
+                <div>
+                  <!--                <ul class="left-timeline">-->
+                  <!--                  <li>-->
+                  <!--                    <time class="left-time" datetime="2017-11-04T18:30"><span class="hidden">25/12/2017</span>-->
+                  <!--                      <span class="large">Now</span></time>-->
+                  <!--                    <div class="left-icon"><img src="assets/images/user/user1.jpg" alt="">-->
+                  <!--                    </div>-->
+                  <!--                    <div class="left-label empty"> <span>No Activity</span> </div>-->
+                  <!--                  </li>-->
+                  <!--                  <li>-->
+                  <!--                    <time class="left-time" datetime="2017-11-04T03:45"><span>03:45 AM</span>-->
+                  <!--                      <span>Today</span></time>-->
+                  <!--                    <div class="left-icon"><img src="assets/images/user/user2.jpg" alt="">-->
+                  <!--                    </div>-->
+                  <!--                    <div class="left-label">-->
+                  <!--                      <h2><a href="#" onClick="return false;">John Deo</a> <span>posted a-->
+                  <!--                          status update</span></h2>-->
+                  <!--                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean-->
+                  <!--                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque-->
+                  <!--                        penatibus et magnis dis parturient montes, nascetur ridiculus mus.-->
+                  <!--                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis,-->
+                  <!--                        sem. Nulla consequat massa quis enim.</p>-->
+                  <!--                    </div>-->
+                  <!--                  </li>-->
+                  <!--                  <li>-->
+                  <!--                    <time class="left-time" datetime="2017-11-03T13:22"><span>01:22 PM</span>-->
+                  <!--                      <span>Yesterday</span></time>-->
+                  <!--                    <div class="left-icon"> <img src="assets/images/user/user3.jpg" alt="">-->
+                  <!--                    </div>-->
+                  <!--                    <div class="left-label">-->
+                  <!--                      <h2><a href="#" onClick="return false;">Job Meeting</a></h2>-->
+                  <!--                      <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>-->
+                  <!--                    </div>-->
+                  <!--                  </li>-->
+                  <!--                  <li>-->
+                  <!--                    <time class="left-time" datetime="2017-10-22T12:13"><span>12:13 PM</span>-->
+                  <!--                      <span>Two weeks ago</span></time>-->
+                  <!--                    <div class="left-icon"><img src="assets/images/user/user4.jpg" alt="">-->
+                  <!--                    </div>-->
+                  <!--                    <div class="left-label">-->
+                  <!--                      <h2><a href="#" onClick="return false;">Arlind Nushi</a> <span>checked in-->
+                  <!--                          at</span>-->
+                  <!--                        <a href="#" onClick="return false;">New York</a></h2>-->
+                  <!--                      <blockquote>-->
+                  <!--                        <p class="blockquote blockquote-primary">-->
+                  <!--                          "It is a long established fact that a reader will be distracted-->
+                  <!--                          by the readable content of a page when looking at its layout."-->
+                  <!--                          <br>-->
+                  <!--                          <small>-->
+                  <!--                            - Isabella-->
+                  <!--                          </small>-->
+                  <!--                        </p>-->
+                  <!--                      </blockquote>-->
+                  <!--                      <div class="row clearfix">-->
+                  <!--                        <div class="col-lg-12">-->
+                  <!--                          <div class="map m-t-10">-->
+                  <!--                            <iframe-->
+                  <!--                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.91477011208!2d-74.11976308802028!3d40.69740344230033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1508039335245"></iframe>-->
+                  <!--                          </div>-->
+                  <!--                        </div>-->
+                  <!--                      </div>-->
+                  <!--                    </div>-->
+                  <!--                  </li>-->
+                  <!--                  <li>-->
+                  <!--                    <time class="left-time" datetime="2017-10-22T12:13"><span>12:13 PM</span>-->
+                  <!--                      <span>Two weeks ago</span></time>-->
+                  <!--                    <div class="left-icon"><img src="assets/images/user/user5.jpg" alt="">-->
+                  <!--                    </div>-->
+                  <!--                    <div class="left-label">-->
+                  <!--                      <h2><a href="#" onClick="return false;">Eroll Maxhuni</a>-->
+                  <!--                        <span>uploaded</span>-->
+                  <!--                        4 <span>new photos to album</span> <a href="#" onClick="return false;">Summer-->
+                  <!--                          Trip</a></h2>-->
+                  <!--                      <blockquote>Pianoforte principles our unaffected not for astonished-->
+                  <!--                        travelling are particular.</blockquote>-->
+                  <!--                      <div class="row">-->
+                  <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;"><img-->
+                  <!--                          src="assets/images/user/usrbig1.jpg" alt="" class="img-fluid img-thumbnail m-t-30"></a>-->
+                  <!--                        </div>-->
+                  <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;">-->
+                  <!--                          <img src="assets/images/user/usrbig5.jpg" alt="" class="img-fluid img-thumbnail m-t-30"></a>-->
+                  <!--                        </div>-->
+                  <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;">-->
+                  <!--                          <img src="assets/images/user/usrbig6.jpg" alt="" class="img-fluid img-thumbnail m-t-30">-->
+                  <!--                        </a> </div>-->
+                  <!--                        <div class="col-lg-3 col-md-6 col-6"><a href="#" onClick="return false;">-->
+                  <!--                          <img src="assets/images/user/usrbig7.jpg" alt="" class="img-fluid img-thumbnail m-t-30">-->
+                  <!--                        </a> </div>-->
+                  <!--                      </div>-->
+                  <!--                    </div>-->
+                  <!--                  </li>-->
+                  <!--                  <li>-->
+                  <!--                    <time class="left-time" datetime="2017-11-03T13:22"><span>01:22 PM</span>-->
+                  <!--                      <span>Two weeks ago</span></time>-->
+                  <!--                    <div class="left-icon"> <img src="assets/images/user/user6.jpg" alt="">-->
+                  <!--                    </div>-->
+                  <!--                    <div class="left-label">-->
+                  <!--                      <h2><a href="#" onClick="return false;">Job Meeting</a></h2>-->
+                  <!--                      <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>-->
+                  <!--                    </div>-->
+                  <!--                  </li>-->
+                  <!--                  <li>-->
+                  <!--                    <time class="left-time" datetime="2017-10-22T12:13"><span>12:13 PM</span>-->
+                  <!--                      <span>Month ago</span></time>-->
+                  <!--                    <div class="left-icon"><img src="assets/images/user/user7.jpg" alt="">-->
+                  <!--                    </div>-->
+                  <!--                    <div class="left-label">-->
+                  <!--                      <h2><a href="#" onClick="return false;">Arlind Nushi</a> <span>checked in-->
+                  <!--                          at</span>-->
+                  <!--                        <a href="#" onClick="return false;">Laborator</a></h2>-->
+                  <!--                      <blockquote>Great place, feeling like in home.</blockquote>-->
+                  <!--                    </div>-->
+                  <!--                  </li>-->
+                  <!--                </ul>-->
+                </div>
               </div>
-<!--              chat-->
-              <div id="chat" [@popOverState]="stateName" (click)="toggle()" class="col-xs-5 col-sm-12 col-md-5 col-lg-5">
+              <!--              chat-->
+              <div id="chat" [@popOverState]="stateName" (click)="toggle()"
+                   class="col-xs-5 col-sm-12 col-md-5 col-lg-5">
                 <div class="card">
                   <div class="chat">
                     <div class="chat-header clearfix">
@@ -279,14 +284,14 @@
     </div>
   </div>
 </section>
-<div class="card" style="position: fixed;bottom: 15px;right: 30px;cursor: pointer" (click)="toggle()">
-  <div class="chat">
-    <div class="chat-header clearfix">
-      <img src="assets/images/logo/icon.png" alt="avatar">
-      <div class="chat-about">
-        <div class="chat-with">Maria Smith</div>
-        <div class="chat-num-messages">2 new messages</div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="card" style="position: fixed;bottom: 15px;right: 30px;cursor: pointer" (click)="toggle()">-->
+<!--  <div class="chat">-->
+<!--    <div class="chat-header clearfix">-->
+<!--      <img src="assets/images/logo/icon.png" alt="avatar">-->
+<!--      <div class="chat-about">-->
+<!--        <div class="chat-with">Maria Smith</div>-->
+<!--        <div class="chat-num-messages">2 new messages</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

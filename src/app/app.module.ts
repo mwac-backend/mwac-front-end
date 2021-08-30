@@ -39,7 +39,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule} from '@angular/material/form-field'
+import { MatDialogModule } from "@angular/material/dialog";
+
 // ===== COMPONENT ======
 import {LayoutComponent} from './shared/layout/layout.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
@@ -48,7 +50,10 @@ import {ChangePasswordComponent} from './auth/change-password/change-password.co
 import {PetitionComponent} from './pages/petition/petition.component';
 import {InterceptorService} from './shared/service/interceptor.service';
 import {FollowUpComponent} from './pages/follow-up/follow-up.component';
-import {FollowUpManageComponent} from './pages/follow-up/follow-up-manage/follow-up-manage.component'
+import {
+  FollowManageDialoComponent,
+  FollowUpManageComponent
+} from './pages/follow-up/follow-up-manage/follow-up-manage.component'
 import {DateFormatPipe} from './shared/pipe/date-format.pipe'
 import {ToastModule} from 'primeng/toast';
 import { CountDatePipe } from './shared/pipe/count-date.pipe';
@@ -68,7 +73,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FollowUpComponent,
     FollowUpManageComponent,
     DateFormatPipe,
-    CountDatePipe
+    CountDatePipe,
+    FollowManageDialoComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +107,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxFileDragDropModule,
     PerfectScrollbarModule,
     MatFormFieldModule,
+    MatDialogModule,
   ],
   exports: [
     DateFormatPipe

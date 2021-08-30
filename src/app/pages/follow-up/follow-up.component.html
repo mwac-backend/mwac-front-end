@@ -19,6 +19,7 @@
                       <th>หน่วยงาน</th>
                       <th>สถานะ</th>
                       <th style="width:4rem"></th>
+                      <th style="width:4rem"></th>
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-submissionControl let-columns="columns">
@@ -29,7 +30,12 @@
                       <td>{{submissionControl.agencyNameTH}}</td>
                       <td>{{submissionControl.submissionControlStatusNameTH}}</td>
                       <td>
-                        <button mat-mini-fab color="primary" (click)="onRowSelect(submissionControl)">
+                        <button *ngIf="submissionControl.submissionControlStatusID == '1'" mat-mini-fab color="warn" (click)="onRowConfirm(submissionControl)">
+                          <mat-icon>check</mat-icon>
+                        </button>
+                      </td>
+                      <td>
+                        <button *ngIf="submissionControl.submissionControlStatusID != '1'" mat-mini-fab color="primary" (click)="onRowSelect(submissionControl)">
                           <mat-icon>manage_search</mat-icon>
                         </button>
                       </td>
