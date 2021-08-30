@@ -149,6 +149,8 @@ export class PetitionComponent implements OnInit {
     )
   }
 
-
+ifCancel(){
+  this.router.navigate(['/dashboard']);
+}
 
 }
