@@ -120,6 +120,9 @@ export class PetitionComponent implements OnInit {
         }
       )
 
+    }else{
+      this.layout.showMessageNoti({ key: 'tr', severity: 'warn', summary: 'warning !!', detail: 'กรุณาตรวสอบความถูกต้อง' });
+       
     }
 
   }
