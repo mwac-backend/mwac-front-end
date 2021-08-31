@@ -31,6 +31,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 
 
 // === MATERIAL MODULE======
+import { MatNativeDateModule, MatRippleModule,MAT_DATE_LOCALE } from "@angular/material/core";
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -41,7 +42,7 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import { MatDialogModule } from "@angular/material/dialog";
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 // ===== COMPONENT ======
 import {LayoutComponent} from './shared/layout/layout.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
@@ -112,6 +113,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
   ],
   exports: [
     DateFormatPipe
@@ -128,6 +132,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
       ],
   bootstrap: [AppComponent]
 })
