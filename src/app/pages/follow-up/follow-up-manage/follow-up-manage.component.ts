@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 import {HttpService} from '../../../shared/service/http.service';
 import {API_URL} from '../../../shared/constant/api.constant';
 import {LayoutComponent} from '../../../shared/layout/layout.component';
-import {FormControl} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FileValidators } from 'ngx-file-drag-drop';
 import {
   trigger,
   state,
@@ -18,7 +19,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import {A} from "@angular/cdk/keycodes";
+
 
 @Component({
   selector: 'app-follow-up-manage',
@@ -144,11 +145,20 @@ export class FollowManageDialoComponent implements OnInit {
   public agency: any
   public orderStatus: any
   public remark: string | undefined
+  fileControl = new FormControl(
+    [],
+    [FileValidators.maxFileCount(5)]
+  )
   ngOnInit(): void {
     this.loadsubmissionControlStatus()
     this.loadAgency()
     console.log(this.data.uuid)
     console.log(this.data.submissionControl.id)
+  }
+  onUploadFile(file: any) {
+    console.log(this.fileControl.value);
+
+    // this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
   }
 
   onRowConfirm(event: any) {

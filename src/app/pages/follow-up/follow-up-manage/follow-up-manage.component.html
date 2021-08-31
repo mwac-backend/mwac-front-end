@@ -11,10 +11,10 @@
 <!--</ul>-->
 
 
-<section style="padding-top: 1vh;" class="content">
+<section style="padding-top: 1vh;min-height: 84vh;" class="content">
   <div class="container-fluid">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="card">
+      <div class="card" style="min-height: 80vh;">
         <div class="header">
           <h2>
             <strong>ไทม์ไลน์</strong>
@@ -23,7 +23,7 @@
         <div class="body">
           <div class="container">
             <div class="row">
-              <div class="col-xs-7 col-sm-12 col-md-7 col-lg-7">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <mat-accordion class="example-headers-align" *ngFor="let key of order_key;let i = index">
                   <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle>
                     <mat-expansion-panel-header>
@@ -198,85 +198,7 @@
                 </div>
               </div>
               <!--              chat-->
-              <div id="chat" [@popOverState]="stateName" (click)="toggle()"
-                   class="col-xs-5 col-sm-12 col-md-5 col-lg-5">
-                <div class="card">
-                  <div class="chat">
-                    <div class="chat-header clearfix">
-                      <img src="assets/images/logo/icon.png" alt="avatar">
-                      <div class="chat-about">
-                        <div class="chat-with">Maria Smith</div>
-                        <div class="chat-num-messages">2 new messages</div>
-                      </div>
-                    </div>
-                    <div class="chat-history" id="chat-conversation" style="position: relative; max-height: 449px;"
-                         [perfectScrollbar]>
-                      <ul>
-                        <li class="clearfix">
-                          <div class="message-data text-end">
-                        <span class="message-data-time">10:10 AM, Today
-                      </span>
-                            &nbsp; &nbsp;
-                            <span class="message-data-name">Maria</span>
-                          </div>
-                          <div class="message other-message float-end"> Hi Robert , how are you? How is
-                            your work going on?
-                          </div>
-                        </li>
-                        <li>
-                          <div class="message-data">
-                            <span class="message-data-name">Robert </span>
-                            <span class="message-data-time">10:12 AM, Today</span>
-                          </div>
-                          <div class="message my-message">
-                            <p>Its good. We completed almost all task assign by our manager.</p>
-                            <div class="row">
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="message-data">
-                            <span class="message-data-name">Robert </span>
-                            <span class="message-data-time">10:12 AM, Today</span>
-                          </div>
-                          <div class="message my-message">
-                            <p>How are you feel today? What's about vacation?.</p>
-                            <div class="row">
-                            </div>
-                          </div>
-                        </li>
-                        <li class="clearfix">
-                          <div class="message-data text-end">
-                      <span class="message-data-time">10:10 AM, Today
-                      </span>
-                            &nbsp; &nbsp;
-                            <span class="message-data-name">Maria</span>
-                          </div>
-                          <div class="message other-message float-end"> I am good, We think for next
-                            weekend.
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="chat-message clearfix">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <mat-form-field class="example-full-width" appearance="outline"
-                                          [hideRequiredMarker]="hideRequiredControl.value">
-                            <input matInput placeholder="Enter text here.." required>
-                          </mat-form-field>
-                        </div>
-                      </div>
-                      <div class="chat-upload">
-                        <button mat-mini-fab class="bg-deep-orange msr-2"><i class="material-icons">attach_file</i>
-                        </button>
-                        <button mat-mini-fab class="bg-deep-orange"><i class="material-icons">insert_emoticon</i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -284,14 +206,93 @@
     </div>
   </div>
 </section>
-<!--<div class="card" style="position: fixed;bottom: 15px;right: 30px;cursor: pointer" (click)="toggle()">-->
-<!--  <div class="chat">-->
-<!--    <div class="chat-header clearfix">-->
-<!--      <img src="assets/images/logo/icon.png" alt="avatar">-->
-<!--      <div class="chat-about">-->
-<!--        <div class="chat-with">Maria Smith</div>-->
-<!--        <div class="chat-num-messages">2 new messages</div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div id="chat" [@popOverState]="stateName"
+      style="position: fixed;right: 10px;bottom: 10px;">
+  <div class="card">
+    <div class="chat">
+      <div class="chat-header clearfix" style="cursor: pointer" (click)="toggle()">
+        <img src="assets/images/logo/icon.png" alt="avatar">
+        <div class="chat-about">
+          <div class="chat-with">Maria Smith</div>
+          <div class="chat-num-messages">2 new messages</div>
+        </div>
+      </div>
+      <div class="chat-history" id="chat-conversation" style="position: relative; max-height: 449px;"
+           [perfectScrollbar]>
+        <ul>
+          <li class="clearfix">
+            <div class="message-data text-end">
+                        <span class="message-data-time">10:10 AM, Today
+                      </span>
+              &nbsp; &nbsp;
+              <span class="message-data-name">Maria</span>
+            </div>
+            <div class="message other-message float-end"> Hi Robert , how are you? How is
+              your work going on?
+            </div>
+          </li>
+          <li>
+            <div class="message-data">
+              <span class="message-data-name">Robert </span>
+              <span class="message-data-time">10:12 AM, Today</span>
+            </div>
+            <div class="message my-message">
+              <p>Its good. We completed almost all task assign by our manager.</p>
+              <div class="row">
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="message-data">
+              <span class="message-data-name">Robert </span>
+              <span class="message-data-time">10:12 AM, Today</span>
+            </div>
+            <div class="message my-message">
+              <p>How are you feel today? What's about vacation?.</p>
+              <div class="row">
+              </div>
+            </div>
+          </li>
+          <li class="clearfix">
+            <div class="message-data text-end">
+                      <span class="message-data-time">10:10 AM, Today
+                      </span>
+              &nbsp; &nbsp;
+              <span class="message-data-name">Maria</span>
+            </div>
+            <div class="message other-message float-end"> I am good, We think for next
+              weekend.
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="chat-message clearfix">
+        <div class="form-group">
+          <div class="form-line">
+            <mat-form-field class="example-full-width" appearance="outline"
+                            [hideRequiredMarker]="hideRequiredControl.value">
+              <input matInput placeholder="Enter text here.." required>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="chat-upload">
+          <button mat-mini-fab class="bg-deep-orange msr-2"><i class="material-icons">attach_file</i>
+          </button>
+          <button mat-mini-fab class="bg-deep-orange"><i class="material-icons">insert_emoticon</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" style="position: fixed;bottom: 15px;right: 30px;cursor: pointer" *ngIf="!show" (click)="toggle()">
+  <div class="chat">
+    <div class="chat-header clearfix">
+      <img src="assets/images/logo/icon.png" alt="avatar">
+      <div class="chat-about">
+        <div class="chat-with">Maria Smith</div>
+        <div class="chat-num-messages">2 new messages</div>
+      </div>
+    </div>
+  </div>
+</div>
