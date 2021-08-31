@@ -8,6 +8,7 @@ import {AuthGuard} from "./shared/guard/auth.guard"
 import {FollowUpComponent} from "./pages/follow-up/follow-up.component"
 import {FollowUpManageComponent} from "./pages/follow-up/follow-up-manage/follow-up-manage.component"
 import {ResultProgressComponent} from "./pages/result-progress/result-progress.component";
+import {ReportComponent} from "./pages/report/report.component";
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: "result-progress",
         component: ResultProgressComponent
+      },
+      {
+        path: "report",
+        component: ReportComponent
       },
     ],
   },

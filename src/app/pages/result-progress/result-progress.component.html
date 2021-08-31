@@ -1,1 +1,44 @@
-<p>result-progress works!</p>
+
+<section style="padding-top: 1vh;" class="content">
+  <div class="container-fluid">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="header">
+          <h2>
+            <strong>ผลการดำเนินงาน</strong>
+          </h2>
+        </div>
+        <div class="body">
+
+          <p-table responsiveLayout="scroll" [value]="submissionControl" selectionMode="single">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th>วันที่</th>
+                <th>ชื่อ</th>
+                <th>คำร้อง</th>
+                <th>หน่วยงาน</th>
+                <th>สถานะ</th>
+                <th style="width:4rem"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-submissionControl let-columns="columns">
+              <tr>
+                <td>{{submissionControl.createDate | dateFormat : 'DD-MM-YYYY HH:mm' }}</td>
+                <td>{{submissionControl.title + submissionControl.firstName + " " + submissionControl.lastName}}</td>
+                <td>{{submissionControl.petition}}</td>
+                <td>{{submissionControl.agencyNameTH}}</td>
+                <td>{{submissionControl.submissionControlStatusNameTH}}</td>
+                <td>
+                  <button mat-mini-fab color="primary" (click)="onRowSelect(submissionControl)">
+                    <mat-icon>manage_search</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
