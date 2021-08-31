@@ -57,6 +57,8 @@ import {
 import {DateFormatPipe} from './shared/pipe/date-format.pipe'
 import {ToastModule} from 'primeng/toast';
 import { CountDatePipe } from './shared/pipe/count-date.pipe';
+import { ResultProgressComponent } from './pages/result-progress/result-progress.component';
+import { ReportComponent } from './pages/report/report.component';
 // config
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -74,7 +76,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FollowUpManageComponent,
     DateFormatPipe,
     CountDatePipe,
-    FollowManageDialoComponent
+    FollowManageDialoComponent,
+    ResultProgressComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
