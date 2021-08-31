@@ -45,7 +45,7 @@ import {
   ],
 })
 export class FollowUpManageComponent implements OnInit {
-  public data = {};
+  public data:any = {};
   hideRequiredControl = new FormControl(false);
 
   constructor(
