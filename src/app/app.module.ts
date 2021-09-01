@@ -28,6 +28,9 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MessageService} from 'primeng/api';
 import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
+import {DropdownModule} from 'primeng/dropdown';
+import {ChartModule} from 'primeng/chart';
+
 
 
 // === MATERIAL MODULE======
@@ -112,6 +115,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     MatFormFieldModule,
     MatDialogModule,
+    DropdownModule,
+    ChartModule,
+    
   ],
   exports: [
     DateFormatPipe

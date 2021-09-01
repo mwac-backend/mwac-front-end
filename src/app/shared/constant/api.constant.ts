@@ -4,8 +4,9 @@ export class API_URL {
 static BASE_URL = "http://68.183.236.106/api/v1";
 
   static login = API_URL.BASE_URL + '/oauth/login';
-  static submission_control = API_URL.BASE_URL + '/submission/control'
-  static submission_control_document = API_URL.BASE_URL + '/submission/control/document'
+  static submission_control = API_URL.BASE_URL + '/submission/control';
+  static submission_control_all = API_URL.BASE_URL + '/submission/control/all';
+  static submission_control_document = API_URL.BASE_URL + '/submission/control/document';
  
   static userInfo = API_URL.BASE_URL + '/user/info'
 
