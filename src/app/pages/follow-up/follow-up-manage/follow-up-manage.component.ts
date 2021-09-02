@@ -45,7 +45,7 @@ import {
   ],
 })
 export class FollowUpManageComponent implements OnInit {
-  public data = {};
+  public data:any = {};
   hideRequiredControl = new FormControl(false);
 
   constructor(
@@ -69,6 +69,7 @@ export class FollowUpManageComponent implements OnInit {
 
   public order: any = [];
   public order_key: any = [];
+
   loadorder(data: any) {
     this.layout.show();
     this._http.get(API_URL.submissionOrder, {id: data.id}).subscribe(
@@ -122,6 +123,7 @@ export class FollowUpManageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log(result)
+        this.loadorder(this.data);
       }
     });
   }
@@ -145,6 +147,8 @@ export class FollowManageDialoComponent implements OnInit {
   public agency: any
   public orderStatus: any
   public remark: string | undefined
+  public status: any = {}
+  public selectedStatus = false
   fileControl = new FormControl(
     [],
     [FileValidators.maxFileCount(5)]
@@ -157,26 +161,37 @@ export class FollowManageDialoComponent implements OnInit {
   }
   onUploadFile(file: any) {
     console.log(this.fileControl.value);
-
     // this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
   }
 
-  onRowConfirm(event: any) {
+  onNoClick(res: any): void {
+    this.dialogRef.close(res);
+  }
+  save() {
     Swal.fire({
       title: 'ยืนยัน',
-      text: 'คุณต้องการจะรับคำร้องหรือไม่',
+      text: 'คุณต้องการจะรดำเนินการต่อหรือไม่',
       showCancelButton: true,
       cancelButtonText: 'ไม่',
       confirmButtonText: 'ใช่',
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log({
+          id: '',
+          groupUuid: this.data.uuid,
+          submissionControlId: this.data.submissionControl.id,
+          submissionOrderStatusId: this.selectedStatus&&this.status?this.status.id:'',
+          agencyId: '',
+          userId: '',
+          remark: this.remark?this.remark:'',
+        })
         this.layout.show()
         this._http
           .post(API_URL.submissionOrder, {
             id: '',
             groupUuid: this.data.uuid,
             submissionControlId: this.data.submissionControl.id,
-            submissionOrderStatusId: '1',
+            submissionOrderStatusId: this.selectedStatus&&this.status?this.status.id:'',
             agencyId: '',
             userId: '',
             remark: this.remark,
@@ -184,6 +199,8 @@ export class FollowManageDialoComponent implements OnInit {
           .subscribe(
             (res) => {
               this.layout.hide()
+              this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'สำเร็จ', detail: 'ดำเนินการแล้ว'});
+              this.onNoClick(res)
             },
             (error) => {
               console.error(error);
@@ -223,4 +240,11 @@ export class FollowManageDialoComponent implements OnInit {
       }
     )
   }
+
+  setStatus(Status:any){
+    this.status = Status
+    this.selectedStatus = !this.selectedStatus
+  }
+
+
 }

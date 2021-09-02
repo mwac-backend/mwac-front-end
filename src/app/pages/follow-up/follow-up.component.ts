@@ -5,6 +5,7 @@ import {API_URL} from '../../shared/constant/api.constant'
 import {LayoutComponent} from "../../shared/layout/layout.component";
 import {SaveDataService} from "../../shared/service/save-data.service";
 import Swal from "sweetalert2";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-follow-up',
@@ -14,26 +15,28 @@ import Swal from "sweetalert2";
 export class FollowUpComponent implements OnInit {
   public userDetail:any = {}
   public submissionControl: submission[] = []
+  public startDate: Date | string = moment().format("YYYY-MM-DD");
+  public endDate: Date | string = moment().format("YYYY-MM-DD");
   constructor(public SaveDataService:SaveDataService,public _http: HttpService, private router: Router,public layout: LayoutComponent) {
   }
 
   ngOnInit(): void {
     this.userDetail = JSON.parse(<string>localStorage.getItem('userDetail'))
     console.log(this.userDetail)
-    this.loaddata(this.userDetail.agencyID )
+    this.loaddata(this.startDate, this.endDate)
 
   }
 
-  loaddata(agencyID:string|number ) {
+  loaddata(startDate?: string | Date, endDate?: string | Date) {
     this.layout.show()
     this._http.get(API_URL.submission_control, {
-      endDate: '',
-      startDate: ''
+      startDate: startDate || '',
+      endDate: endDate || ''
     }).subscribe(
       (res) => {
         console.log(res)
         this.layout.hide()
-        this.submissionControl = res
+        this.submissionControl = res.filter((event:any) => event.submissionControlStatusID !== 3);
       },
       (error) => {
         this.layout.hide()
@@ -76,30 +79,15 @@ export class FollowUpComponent implements OnInit {
       }
     });
   }
+  onStartDate(event:any) {
+    this.startDate = moment(event.target.value).format("YYYY-MM-DD");
+    this.loaddata(this.startDate, this.endDate);
+  }
 
-  // address: "11"
-  // agencyID: 5
-  // agencyNameEN: "System"
-  // agencyNameTH: "ระบบ"
-  // agencyNumber: null
-  // createByID: "3"
-  // createByName: "Mr. admin root"
-  // createByPhotoPath: "https://book.fintechinno.com/smart-clinic/file_resource/SmartClinic/photo/currentImage/a41a9954-77e9-4127-b79b-e965c98c338e.jpg"
-  // createDate: "2021-08-30T13:45:06.000Z"
-  // district: "บีบี"
-  // firstName: "แอ็ดมิน"
-  // id: 8
-  // lastName: "โอบีชีดี"
-  // office: "โรงพยาบาล"
-  // petition: "โดนหัวหน้าทำร้าย"
-  // petitionDate: "2021-08-11T13:44:00.000Z"
-  // postcode: "32000"
-  // province: "ชีช๊"
-  // subDistrict: "เอเอ"
-  // submissionControlStatusID: 1
-  // submissionControlStatusNameEN: "padding"
-  // submissionControlStatusNameTH: "รอดำเนินการ"
-  // title: "นาย"
+  onEndDate(event:any) {
+    this.endDate = moment(event.target.value).format("YYYY-MM-DD");
+    this.loaddata(this.startDate, this.endDate);
+  }
 }
 
 export interface submission {
