@@ -9,7 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 // ============== OTHER ===============
 import {NgxSpinnerModule} from "ngx-spinner";
 import {ToastrModule} from 'ngx-toastr';
-import { NgxFileDragDropModule } from 'ngx-file-drag-drop';
+import {NgxFileDragDropModule} from 'ngx-file-drag-drop';
 import {
   PerfectScrollbarModule,
   PERFECT_SCROLLBAR_CONFIG,
@@ -32,9 +32,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ChartModule} from 'primeng/chart';
 
 
-
 // === MATERIAL MODULE======
-import { MatNativeDateModule, MatRippleModule,MAT_DATE_LOCALE } from "@angular/material/core";
+import {MatNativeDateModule, MatRippleModule, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -44,7 +43,7 @@ import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
-import { MatDialogModule } from "@angular/material/dialog";
+import {MatDialogModule} from "@angular/material/dialog";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 // ===== COMPONENT ======
 import {LayoutComponent} from './shared/layout/layout.component';
@@ -53,6 +52,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {ChangePasswordComponent} from './auth/change-password/change-password.component';
 import {PetitionComponent} from './pages/petition/petition.component';
 import {InterceptorService} from './shared/service/interceptor.service';
+import {ErrorInterceptor} from './shared/service/error.interceptor';
 import {FollowUpComponent} from './pages/follow-up/follow-up.component';
 import {
   FollowManageDialoComponent,
@@ -60,14 +60,15 @@ import {
 } from './pages/follow-up/follow-up-manage/follow-up-manage.component'
 import {DateFormatPipe} from './shared/pipe/date-format.pipe'
 import {ToastModule} from 'primeng/toast';
-import { CountDatePipe } from './shared/pipe/count-date.pipe';
-import { ResultProgressComponent } from './pages/result-progress/result-progress.component';
-import { ReportComponent } from './pages/report/report.component';
+import {CountDatePipe} from './shared/pipe/count-date.pipe';
+import {ResultProgressComponent} from './pages/result-progress/result-progress.component';
+import {ReportComponent} from './pages/report/report.component';
 // config
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
 };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +119,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatDialogModule,
     DropdownModule,
     ChartModule,
-    
+
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
@@ -129,17 +130,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: InterceptorService,
-    multi: true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
     },
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     MessageService,
     {
-    provide: PERFECT_SCROLLBAR_CONFIG,
-    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-      ],
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
