@@ -21,6 +21,29 @@
             </div>
             <div class="body">
                 <div style="margin: 0px 15px 15px 15px;">
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Start date</mat-label>
+                                <input matInput [matDatepicker]="pickerStart" (dateChange)="onStartDate($event)"
+                                    [(ngModel)]="startDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerStart></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>End date</mat-label>
+                                <input matInput [min]="startDate" [matDatepicker]="pickerEnd" (dateChange)="onEndDate($event)"
+                                    [(ngModel)]="endDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerEnd></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
                     <div class="row" style="margin-bottom: 15px;">
                         <div class="col-xl-3 col-lg-6 col-md-6 mb-30 marginCard">
                             <div class="card card-statistics">
@@ -36,9 +59,6 @@
                                             <p class="textareaHe"><span>{{countAll}}</span></p>
                                         </div>
                                     </div>
-                                    <!-- <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                        <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> 81% lower growth
-                      </p> -->
                                 </div>
                             </div>
                         </div>
@@ -95,8 +115,9 @@
                         </div>
                     </div>
 
-                    <p-table #dt2 [value]="submissionControlAll" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
-                        [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+                    <p-table id="tableReport" #dt2 [value]="submissionControlAll" dataKey="id" [rows]="10"
+                        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+                        [paginator]="true"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                         [globalFilterFields]="['firstName','lastName']">
 
@@ -116,10 +137,12 @@
                                 </th>
 
                                 <th>
-                                    
+
                                     <p-columnFilter field="agencyNameTH" matchMode="equals" [showMenu]="false">
                                         <ng-template pTemplate="filter">
-                                            <p-dropdown ngDefaultControl [(ngModel)]="valueAgency" [options]="agencyList" (onChange)="filterList(valueAgency,valueControlStatus)"
+                                            <p-dropdown ngDefaultControl [(ngModel)]="valueAgency"
+                                                [options]="agencyList"
+                                                (onChange)="filterList(valueAgency,valueControlStatus)"
                                                 optionLabel="agencyNameTH" optionValue="id" [showClear]="false">
                                                 <ng-template let-option pTemplate="item">
                                                     <span>{{option.agencyNameTH}}</span>
@@ -132,7 +155,9 @@
                                     <p-columnFilter field="submissionControlStatusNameTH" matchMode="equals"
                                         [showMenu]="false">
                                         <ng-template pTemplate="filter">
-                                            <p-dropdown ngDefaultControl [(ngModel)]="valueControlStatus" [options]="controlStatus"  (onChange)="filterList(valueAgency,valueControlStatus)"
+                                            <p-dropdown ngDefaultControl [(ngModel)]="valueControlStatus"
+                                                [options]="controlStatus"
+                                                (onChange)="filterList(valueAgency,valueControlStatus)"
                                                 optionLabel="nameTH" optionValue="id" [showClear]="false">
                                                 <ng-template let-option pTemplate="item">
                                                     <span>{{option.nameTH}}</span>
