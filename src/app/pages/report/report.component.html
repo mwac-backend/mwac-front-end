@@ -102,10 +102,10 @@
 
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Name</th>
-                                <th>Office</th>
-                                <th>Agent</th>
-                                <th>Status</th>
+                                <th>ชื่อผู้รองเรียน</th>
+                                <th>สถานที่ทำงาน</th>
+                                <th>หน่วยงาน</th>
+                                <th>สถานะ</th>
                             </tr>
                             <tr>
                                 <th>
@@ -116,12 +116,13 @@
                                 </th>
 
                                 <th>
+                                    
                                     <p-columnFilter field="agencyNameTH" matchMode="equals" [showMenu]="false">
                                         <ng-template pTemplate="filter">
-                                            <p-dropdown ngDefaultControl [(ngModel)]="valueData" [options]="agencyList"
-                                                optionLabel="name" optionValue="id" [showClear]="true">
+                                            <p-dropdown ngDefaultControl [(ngModel)]="valueAgency" [options]="agencyList" (onChange)="filterList(valueAgency,valueControlStatus)"
+                                                optionLabel="agencyNameTH" optionValue="id" [showClear]="false">
                                                 <ng-template let-option pTemplate="item">
-                                                    <span>{{option.name}}</span>
+                                                    <span>{{option.agencyNameTH}}</span>
                                                 </ng-template>
                                             </p-dropdown>
                                         </ng-template>
@@ -131,10 +132,10 @@
                                     <p-columnFilter field="submissionControlStatusNameTH" matchMode="equals"
                                         [showMenu]="false">
                                         <ng-template pTemplate="filter">
-                                            <p-dropdown ngDefaultControl [(ngModel)]="valueData" [options]="agencyList"
-                                                optionLabel="name" optionValue="id" [showClear]="true">
+                                            <p-dropdown ngDefaultControl [(ngModel)]="valueControlStatus" [options]="controlStatus"  (onChange)="filterList(valueAgency,valueControlStatus)"
+                                                optionLabel="nameTH" optionValue="id" [showClear]="false">
                                                 <ng-template let-option pTemplate="item">
-                                                    <span>{{option.name}}</span>
+                                                    <span>{{option.nameTH}}</span>
                                                 </ng-template>
                                             </p-dropdown>
                                         </ng-template>

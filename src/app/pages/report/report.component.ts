@@ -9,6 +9,7 @@ import { formPetitionConfigs } from 'src/app/shared/constant/form-petition.const
 import { LayoutComponent } from 'src/app/shared/layout/layout.component';
 import { HttpService } from 'src/app/shared/service/http.service';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -17,50 +18,20 @@ import * as moment from 'moment';
 export class ReportComponent implements OnInit {
 
   submissionControlAll: any = [];
+  submissionControlAllFilter: any = [];
+
   loading = false;
-  valueData: any = undefined;
+  valueControlStatus: any = 0;
+  valueAgency: any = 0;
 
   countAll = 0;
   countSuccess = 0;
   countInProgress = 0;
   countWaiting = 0;
 
-  agencyList = [
-    { name: "Amy Elsner", id: 1 },
-    { name: "Anna Fali", id: 2 },
-    { name: "Asiya Javayant", id: 3 },
-    { name: "Bernardo Dominic", id: 4 },
-    { name: "Elwin Sharvill", id: 5 }
-  ];
+  agencyList:any = [];
+  controlStatus:any = [];
 
-  public chartType: string = 'line';
-
-  public chartDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'My First dataset' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'My Second dataset' }
-  ];
-
-  public chartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-  public chartColors: Array<any> = [
-    {
-      backgroundColor: 'rgba(105, 0, 132, .2)',
-      borderColor: 'rgba(200, 99, 132, .7)',
-      borderWidth: 2,
-    },
-    {
-      backgroundColor: 'rgba(0, 137, 132, .2)',
-      borderColor: 'rgba(0, 10, 130, .7)',
-      borderWidth: 2,
-    }
-  ];
-
-  public chartOptions: any = {
-    responsive: true
-  };
-  public chartClicked(e: any): void { }
-  public chartHovered(e: any): void { }
-  
 
   constructor(
     private messageService: MessageService,
@@ -76,6 +47,8 @@ export class ReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSubmissionControlAll();
+    this.loadAgencyList();
+    this.loadControlStatusList();
 
   }
 
@@ -87,14 +60,14 @@ export class ReportComponent implements OnInit {
     this._http.get(API_URL.submission_control_all, { }).subscribe(
       (res) => {
         if (res) {
-          this.submissionControlAll = res;
+          this.submissionControlAll = res.filter((data: any) => data.submissionControlStatusID !== 4);
+          this.submissionControlAllFilter = res.filter((data: any) => data.submissionControlStatusID !== 4);
+          this.countAll = this.submissionControlAllFilter.length;
+          this.countSuccess = this.submissionControlAllFilter.filter((data: any) => data.submissionControlStatusID === 3).length;
+          this.countInProgress = this.submissionControlAllFilter.filter((data: any) => data.submissionControlStatusID === 2).length;
+          this.countWaiting = this.submissionControlAllFilter.filter((data: any) => data.submissionControlStatusID === 1).length;
 
-          this.countAll = this.submissionControlAll.length;
-          this.countSuccess = this.submissionControlAll.filter((data: any) => data.submissionControlStatusID === 3).length;
-          this.countInProgress = this.submissionControlAll.filter((data: any) => data.submissionControlStatusID === 2).length;
-          this.countWaiting = this.submissionControlAll.filter((data: any) => data.submissionControlStatusID === 1).length;
-
-
+          this.filterList(this.valueAgency,this.valueControlStatus);
           console.log(res);
           this.layout.hide();
         }
@@ -106,5 +79,56 @@ export class ReportComponent implements OnInit {
       }
     )
   }
+
+  loadAgencyList() {
+    this.layout.show();
+    this._http.get(API_URL.apiAgency, { }).subscribe(
+      (res) => {
+        if (res) {
+          const obj = [{agencyNameTH: "ทั้งหมด",id: 0}];
+          this.agencyList= _.union(obj, res);
+          console.log(res);
+          this.layout.hide();
+        }
+      },
+      (error) => {
+        console.error(error);
+        this.layout.hide();}
+    )
+  }
+
+  loadControlStatusList() {
+    this.layout.show();
+    this._http.get(API_URL.getSubmissionControlStatus, { }).subscribe(
+      (res) => {
+        if (res) {
+          const obj = [{nameTH: "ทั้งหมด",id: 0}];
+          this.controlStatus= _.union(obj, res).filter((data: any) => data.id !== 4);
+          console.log(res);
+          this.layout.hide();
+        }
+      },
+      (error) => {
+        console.error(error);
+        this.layout.hide();}
+    )
+  }
+
+  filterList(agency:number,status:number){
+   if(agency === 0 && status === 0 ){
+    this.submissionControlAll = this.submissionControlAllFilter;
+   }else if(agency !== 0 && status === 0){
+    this.submissionControlAll = this.submissionControlAllFilter.filter((data: any) => data.agencyID == agency);
+   }else if(agency === 0 && status !== 0 ){
+    this.submissionControlAll = this.submissionControlAllFilter.filter((data: any) => data.submissionControlStatusID == status);
+   
+   }
+   else{
+      this.submissionControlAll = this.submissionControlAllFilter.filter((data: any) => data.agencyID == agency && data.submissionControlStatusID == status);
+
+   }
+  }
+
+ 
 
 }

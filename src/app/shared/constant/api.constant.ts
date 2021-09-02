@@ -17,6 +17,7 @@ static BASE_URL = "http://68.183.236.106/api/v1";
   static apiAgency = API_URL.BASE_URL + '/agency'
 
   static getsubmissionOrderStatus = API_URL.BASE_URL + '/submissionOrderStatus'
+  static getSubmissionControlStatus = API_URL.BASE_URL + '/submissionControlStatus'
 
 
 
