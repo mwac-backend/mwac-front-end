@@ -72,3 +72,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: -webkit-fill-available;
 }
 }
+
+#fileDragDrop2{
+  .placeholder{
+      background-color: revert;
+    }
+}

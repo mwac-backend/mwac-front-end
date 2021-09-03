@@ -40,10 +40,16 @@
   <div class="container-fluid">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="card" style="min-height: 80vh;">
-        <div class="header">
-          <h2>
+        <div class="header row">
+          <h2 class="col-xl-10 col-lg-10 col-md-9 col-sm-9 ">
             <strong>ไทม์ไลน์</strong>
           </h2>
+          <div class="col-2" style="text-align: end">
+            <button mat-raised-button color="warn" (click)="openDialog('','newTimeLine')">
+              ไทม์ไลน์ใหม่
+            </button>
+          </div>
+
         </div>
         <div class="body">
           <div class="container">
@@ -80,7 +86,7 @@
                           </h2>
                           <p>{{list.remark}}</p>
                           <div *ngFor="let Document of list.submissionOrderDocument">
-                            <p>{{Document.pathFile}}</p>
+                            <a href="{{Document.pathFile}}" target="_blank">{{fileName(Document.pathFile)}}</a>
                           </div>
                         </div>
                       </li>
@@ -89,7 +95,7 @@
                           <span></span></time>
                         <div class="left-icon">
                         </div>
-                        <div class="left-label" style="cursor: pointer" (click)="openDialog(key)">
+                        <div class="left-label" style="cursor: pointer" (click)="openDialog(key,'addTimeLine')">
                           <p>
                           </p>
                           <div>
