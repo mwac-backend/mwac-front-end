@@ -4,8 +4,8 @@ import {Router} from '@angular/router';
 import {HttpService} from '../../../shared/service/http.service';
 import {API_URL} from '../../../shared/constant/api.constant';
 import {LayoutComponent} from '../../../shared/layout/layout.component';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FileValidators } from 'ngx-file-drag-drop';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FileValidators} from 'ngx-file-drag-drop';
 import {
   trigger,
   state,
@@ -45,7 +45,7 @@ import {
   ],
 })
 export class FollowUpManageComponent implements OnInit {
-  public data:any = {};
+  public data: any = {};
   hideRequiredControl = new FormControl(false);
 
   constructor(
@@ -75,8 +75,10 @@ export class FollowUpManageComponent implements OnInit {
     this._http.get(API_URL.submissionOrder, {id: data.id}).subscribe(
       (res) => {
         console.log(res);
-        this.order = res.reduce(( r: { [x: string]: any; }, a: { groupUUID: string | number; }) => {
-          r[a.groupUUID] = [...(r[a.groupUUID] || []), a]; return r; }, {});
+        this.order = res.reduce((r: { [x: string]: any; }, a: { groupUUID: string | number; }) => {
+          r[a.groupUUID] = [...(r[a.groupUUID] || []), a];
+          return r;
+        }, {});
         for (let key in this.order) {
           this.order_key.push(key);
         }
@@ -115,11 +117,11 @@ export class FollowUpManageComponent implements OnInit {
   }
 
 
-  openDialog(uuid: string, type:string) {
+  openDialog(uuid: string, type: string) {
     let dialogRef = this.dialog.open(FollowManageDialoComponent, {
-      data: {type,uuid,submissionControl: this.data},
+      data: {type, uuid, submissionControl: this.data},
       height: '80vh',
-      width:'40vw'
+      width: '40vw'
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -128,7 +130,8 @@ export class FollowUpManageComponent implements OnInit {
       }
     });
   }
-  fileName( pate:string ){
+
+  fileName(pate: string) {
     return pate.replace(/^.*[\\\/]/, '')
   }
 }
@@ -145,24 +148,32 @@ export class FollowManageDialoComponent implements OnInit {
     public layout: LayoutComponent,
     public dialogRef: MatDialogRef<FollowManageDialoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-
   ) {
   }
+
   public agency: any
   public orderStatus: any
   public remark: string | undefined
   public status: any = {}
   public selectedStatus = false
+  public agencyList: any = [];
+  public userList: any = {}
+  public agencyId: null | string | number = null;
+  public userId: null | string | number = null;
+
   fileControl = new FormControl(
     [],
     [FileValidators.maxFileCount(5)]
   )
+
   ngOnInit(): void {
     this.loadsubmissionControlStatus()
     this.loadAgency()
+    this.loadAgencyList()
     console.log(this.data.uuid)
     console.log(this.data.submissionControl.id)
   }
+
   onUploadFile(file: any) {
     console.log(this.fileControl.value);
     // this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
@@ -171,6 +182,24 @@ export class FollowManageDialoComponent implements OnInit {
   onNoClick(res: any): void {
     this.dialogRef.close(res);
   }
+
+  loadAgencyList(){
+    this.layout.show();
+    this._http.get(API_URL.apiAgency, {}).subscribe(
+      (res) => {
+        if (res) {
+          this.agencyList = res;
+          console.log(res);
+          this.layout.hide();
+        }
+      },
+      (error) => {
+        console.error(error);
+        this.layout.hide();
+      }
+    )
+  }
+
   save() {
     Swal.fire({
       title: 'ยืนยัน',
@@ -184,10 +213,10 @@ export class FollowManageDialoComponent implements OnInit {
           id: '',
           groupUuid: this.data.uuid,
           submissionControlId: this.data.submissionControl.id,
-          submissionOrderStatusId: this.selectedStatus&&this.status?this.status.id:'',
+          submissionOrderStatusId: this.selectedStatus && this.status ? this.status.id : '',
           agencyId: '',
           userId: '',
-          remark: this.remark?this.remark:'',
+          remark: this.remark ? this.remark : '',
         })
         this.layout.show()
         this._http
@@ -195,21 +224,21 @@ export class FollowManageDialoComponent implements OnInit {
             id: '',
             groupUuid: this.data.uuid,
             submissionControlId: this.data.submissionControl.id,
-            submissionOrderStatusId: this.selectedStatus&&this.status?this.status.id:'',
-            agencyId: '',
-            userId: '',
+            submissionOrderStatusId: this.selectedStatus && this.status ? this.status.id : '',
+            agencyId: this.agencyId?this.agencyId:'',
+            userId: this.userId?this.userId:'',
             remark: this.remark,
           })
           .subscribe(
             (res) => {
               console.log(res)
               console.log(this.fileControl.value);
-              if(this.fileControl.value.length !== 0){
+              if (this.fileControl.value.length !== 0) {
                 this.saveFile(res[0].submissionOrderID)
-              }else {
-              this.layout.hide()
-              this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'สำเร็จ', detail: 'ดำเนินการแล้ว'});
-              this.onNoClick(res)
+              } else {
+                this.layout.hide()
+                this.layout.showMessageNoti({key: 'tr', severity: 'info', summary: 'สำเร็จ', detail: 'ดำเนินการแล้ว'});
+                this.onNoClick(res)
               }
             },
             (error) => {
@@ -220,7 +249,7 @@ export class FollowManageDialoComponent implements OnInit {
     });
   }
 
-  saveFile(submissionOrderId: number ) {
+  saveFile(submissionOrderId: number) {
     console.log(submissionOrderId)
     const formData = new FormData();
     formData.append('id', '');
@@ -229,19 +258,20 @@ export class FollowManageDialoComponent implements OnInit {
     this.fileControl.value.forEach((element: any) => {
       formData.append('pathFile', element);
     });
-    console.log(formData.getAll('id'),formData.getAll('submissionOrderId'),formData.getAll('remark'),formData.getAll('pathFile'))
-    this._http.post(API_URL.orderDocument,formData).subscribe(
-      (res)=>{
+    console.log(formData.getAll('id'), formData.getAll('submissionOrderId'), formData.getAll('remark'), formData.getAll('pathFile'))
+    this._http.post(API_URL.orderDocument, formData).subscribe(
+      (res) => {
         console.log(res)
         this.layout.hide()
-        this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'สำเร็จ', detail: 'ดำเนินการแล้ว'});
+        this.layout.showMessageNoti({key: 'tr', severity: 'info', summary: 'สำเร็จ', detail: 'ดำเนินการแล้ว'});
         this.onNoClick(res)
       },
-      (err)=>{
+      (err) => {
         console.error(err);
       }
     )
   }
+
   loadsubmissionControlStatus() {
     this.layout.show()
     this._http.get(API_URL.getsubmissionOrderStatus, {}).subscribe(
@@ -263,7 +293,22 @@ export class FollowManageDialoComponent implements OnInit {
     this._http.get(API_URL.apiAgency, {}).subscribe(
       (res) => {
         this.agency = res
-          this.layout.hide()
+        this.layout.hide()
+      },
+      (error) => {
+        console.error(error)
+        this.layout.hide()
+
+      }
+    )
+  }
+  listUserByAgency(e:any){
+    this.layout.show()
+    console.log(e)
+    this._http.get(API_URL.listUserByAgency, {agencyId:e}).subscribe(
+      (res) => {
+        this.userList = res
+        this.layout.hide()
       },
       (error) => {
         console.error(error)
@@ -273,12 +318,12 @@ export class FollowManageDialoComponent implements OnInit {
     )
   }
 
-  setStatus(Status:any){
+  setStatus(Status: any) {
     this.status = Status
     this.selectedStatus = !this.selectedStatus
   }
 
-  newTimeLine(){
+  newTimeLine() {
     Swal.fire({
       title: 'ยืนยัน',
       text: 'คุณต้องการจะเพิ่มคำร้องใหม่หรือไม่',
@@ -294,14 +339,14 @@ export class FollowManageDialoComponent implements OnInit {
           submissionControlId: this.data.submissionControl.id,
           submissionOrderStatusId: 1,
           userId: "",
-          remark: this.remark?this.remark:'',
+          remark: this.remark ? this.remark : '',
         }).subscribe(
           (res) => {
-            if(this.fileControl.value.length !== 0){
+            if (this.fileControl.value.length !== 0) {
               this.saveFile(res[0].submissionOrderID)
-            }else {
+            } else {
               this.layout.hide()
-              this.layout.showMessageNoti({key: 'tr', severity:'info', summary: 'สำเร็จ', detail: 'ดำเนินการแล้ว'});
+              this.layout.showMessageNoti({key: 'tr', severity: 'info', summary: 'สำเร็จ', detail: 'ดำเนินการแล้ว'});
               this.onNoClick(res)
             }
           },
