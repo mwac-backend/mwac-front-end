@@ -2,12 +2,38 @@
 <div *ngIf="data.type === 'addTimeLine'">
   <mat-dialog-content style="height: 65vh;">
     <div class="row">
-      <div class="col" *ngFor="let s of orderStatus">
+      <div [ngClass]="{'col':s.id !== 1&&s.id !== 6}" *ngFor="let s of orderStatus" style="margin-bottom: 5px">
         <button *ngIf="s.id !== 1&&s.id !== 6" (click)="setStatus(s)" [disabled]="status.id !== s.id&&selectedStatus"
                 class="bt-id-{{s.id}}" mat-raised-button color="primary">{{s.nameEN}}</button>
       </div>
     </div>
     <br>
+    <div class="row " *ngIf="status.id == 4||status.id == 7&&selectedStatus">
+      <div class="labelText">
+        หน่วยงาน
+      </div>
+      <div class="col">
+        <mat-form-field class="nameWith" appearance="outline" style="width: 95%;margin-left: 2%;margin-right: 1%;">
+          <mat-label></mat-label>
+          <mat-select [(ngModel)]="agencyId" (valueChange)="listUserByAgency($event)">
+            <mat-option *ngFor="let item of agencyList" [value]="item.id">{{item.agencyNameTH}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row " *ngIf="status.id == 4||status.id == 7&&selectedStatus">
+      <div class="labelText">
+        บุคคล
+      </div>
+      <div class="col">
+        <mat-form-field class="nameWith" appearance="outline" style="width: 95%;margin-left: 2%;margin-right: 1%;">
+          <mat-label></mat-label>
+          <mat-select [(ngModel)]="userId">
+            <mat-option *ngFor="let item of userList" [value]="item.id">{{item.title}} {{item.name}} {{item.surname}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
     <div class="row">
       <div class="col" style="text-align: center">
         <mat-form-field appearance="outline" style="width: 95%;">

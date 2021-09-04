@@ -16,7 +16,7 @@ export class FollowUpComponent implements OnInit {
   public userDetail:any = {}
   public submissionControl: submission[] = []
   public startDate: Date | string = moment().format("YYYY-MM-DD");
-  public endDate: Date | string = moment().format("YYYY-MM-DD");
+  public endDate: Date | string = moment().add(1,'day').format("YYYY-MM-DD");
   constructor(public SaveDataService:SaveDataService,public _http: HttpService, private router: Router,public layout: LayoutComponent) {
   }
 
@@ -70,7 +70,7 @@ export class FollowUpComponent implements OnInit {
         }).subscribe(
           (res) => {
             this.layout.hide()
-            this.loaddata(this.userDetail.agencyID )
+            this.loaddata(this.startDate, this.endDate)
           },
           (error) => {
             console.error(error)
