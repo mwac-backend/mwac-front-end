@@ -1,0 +1,52 @@
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url('assets/images/bg-01.jpg');">
+					<span class="login100-form-title-1">
+						Sign In
+					</span>
+      </div>
+      <form [formGroup]="myLogin" (ngSubmit)="login()" class="login100-form validate-form">
+        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+          <mat-form-field appearance="standard" style="width: 100%;">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter username" formControlName="{{this.formConfig.username.field}}">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+          <mat-form-field appearance="standard" style="width: 100%;">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter password" formControlName="{{this.formConfig.password.field}}">
+            <mat-icon matSuffix>password</mat-icon>
+          </mat-form-field>
+        </div>
+
+<!--        <div class="flex-sb-m w-full p-b-30">-->
+<!--          <div class="contact100-form-checkbox">-->
+<!--            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">-->
+<!--            <label class="label-checkbox100" for="ckb1">-->
+<!--              Remember me-->
+<!--            </label>-->
+<!--          </div>-->
+
+<!--          <div>-->
+<!--            <a href="#" class="txt1">-->
+<!--              Forgot Password?-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="container-login100-form-btn">
+          <button type="submit" class="login100-form-btn">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<ngx-spinner></ngx-spinner>
+<p-toast position="top-right" key="tr"></p-toast>
+

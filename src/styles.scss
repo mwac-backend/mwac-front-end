@@ -37,3 +37,44 @@ $mwac-front-end-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// regular style toast
+@import '~ngx-toastr/toastr';
+
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+@import 'assets/css/toast.css';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+.p-calendar {
+  width: 100%;
+  height: 50px;
+}
+
+.p-calendar  .p-datepicker {
+  min-width: 200px !important;
+}
+
+
+.p-calendar-w-btn .p-inputtext {
+  background-color: #f0f8ff00;
+}
+
+
+#fileDragDrop{
+  .placeholder{
+      background-color: revert;
+    }
+}
+
+#tableReport{
+  .p-datatable table {
+    width: -webkit-fill-available;
+}
+}
+
+#fileDragDrop2{
+  .placeholder{
+      background-color: revert;
+    }
+}

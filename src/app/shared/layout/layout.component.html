@@ -1,0 +1,109 @@
+<div style="height: 100vh;">
+  <nav id="navbar-example2" class="navbar navbar-light px-3 navBar">
+
+    <a class="navbar-brand icon-text" style="display: flex;">
+      <img style="height: 5vh;padding-left: 10px;;" src="assets/images/logo/logo.png">
+      <mat-icon style="color: #FFF;cursor: pointer" (click)="drawer.toggle()" matSuffix>reorder</mat-icon>
+      <!--      <div style="margin-left: 15px;margin-top: 2px;color: #FFF">MWAC</div>-->
+    </a>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSuccess()">Profile</a>
+      </li>
+      <!-- <li class="nav-item">
+          <a class="nav-link" href="">Second</a>
+      </li> -->
+
+    </ul>
+  </nav>
+  <mat-drawer-container class="example-container">
+
+    <mat-drawer #drawer [opened]="true" [mode]="'side'" class="example-sidenav" mode="side">
+      <p style="padding: 20px;color:#FFF;">การนำทาง</p>
+      <mat-nav-list style="background-color: #2d3b4d;">
+        <mat-list-item routerLinkActive="/dashboard" routerLink="dashboard">
+          <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="material-icons-outlined"> home </span>
+            <span>&nbsp;หน้าแรก</span>
+          </div>
+        </mat-list-item>
+
+        <mat-accordion id="loyout">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+                  <span class="material-icons-outlined">layers</span>
+                  <span>&nbsp;บริการช่วยเหลือ</span>
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item routerLink="/petition">
+              <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+                <!--                <span class="material-icons-outlined"> home </span>-->
+                <span>ยื่นคำร้อง</span>
+              </div>
+            </mat-list-item>
+            <mat-list-item routerLink="/follow-up">
+              <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+                <!--                <span class="material-icons-outlined"> home </span>-->
+                <span>ติดตามการช่วยเหลือ</span>
+              </div>
+            </mat-list-item>
+            <mat-list-item routerLink="/joy-follow-up">
+              <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+                <!--                <span class="material-icons-outlined"> home </span>-->
+                <span>รับการช่วยเหลือจากหน่วยงานอื่น</span>
+              </div>
+            </mat-list-item>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-list-item routerLink="/result-progress">
+          <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="material-icons-outlined"> reorder </span>
+            <span>&nbsp;ผลการดำเนินงาน</span>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item routerLink="/report">
+          <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="material-icons-outlined"> sticky_note_2 </span>
+            <span>&nbsp;รายงาน</span>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item (click)="auth.onLogout()">
+          <div class="icon-text" fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="material-icons-outlined"> logout </span>
+            <span>&nbsp;ออกจากระบบ</span>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+      <br>
+      <!--      <p-panelMenu [model]="items" [style]="{'background':'#2d3b4d'}"></p-panelMenu>-->
+    </mat-drawer>
+
+    <div style="margin-top: 10vh;">
+
+      <router-outlet></router-outlet>
+
+      <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">Copyright © 2021 OBCD. All
+        Rights Reserved
+      </div>
+    </div>
+
+  </mat-drawer-container>
+  <ngx-spinner></ngx-spinner>
+
+
+  <p-toast position="bottom-right" key="custom">
+    <ng-template let-message pTemplate="message">
+
+    </ng-template>
+  </p-toast>
+
+  <p-toast position="top-right" key="tr"></p-toast>
+
+</div>

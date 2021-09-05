@@ -1,0 +1,198 @@
+<div class="container-fluid">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <div class="row" style="width: 100%;height: 70px;">
+                    <div class="col-12 col-sm-6 mgTop">
+                        <p class="mb-0" style="font-size: 17px;margin: 20px;">รายงาน</p>
+                    </div>
+                    <div class="col-12 col-sm-6 breadcrumb"
+                        style="display: flex;justify-content: flex-end;align-items: flex-end;margin-top: 20px;">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item" routerLink="/dashboard">
+                                    <span class="material-icons-outlined iconHome">home</span>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">รายงาน</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div style="margin: 0px 15px 15px 15px;">
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Start date</mat-label>
+                                <input matInput [matDatepicker]="pickerStart" (dateChange)="onStartDate($event)"
+                                    [(ngModel)]="startDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerStart></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>End date</mat-label>
+                                <input matInput [min]="startDate" [matDatepicker]="pickerEnd" (dateChange)="onEndDate($event)"
+                                    [(ngModel)]="endDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerEnd></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-bottom: 15px;">
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30 marginCard">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix" style="display: flex;">
+                                        <div class="float-left">
+                                            <span class="text-primary">
+                                                <span class="material-icons-outlined classHe">description</span>
+                                            </span>
+                                        </div>
+                                        <div class="float-right text-right" style="width: 100%;">
+                                            <p class="card-text text-dark textHe">คำร้องทั้งหมด</p>
+                                            <p class="textareaHe"><span>{{countAll}}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30 marginCard">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix" style="display: flex;">
+                                        <div class="float-left">
+                                            <span class="text-success">
+                                                <span class="material-icons-outlined classHe">task</span>
+                                            </span>
+                                        </div>
+                                        <div class="float-right text-right" style="width: 100%;">
+                                            <p class="card-text text-dark textHe">เสร็จสิ้น</p>
+                                            <p class="textareaHe"><span>{{countSuccess}}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30 marginCard">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix" style="display: flex;">
+                                        <div class="float-left">
+                                            <span class="text-warning">
+                                                <span class="material-icons-outlined classHe">upload_file</span>
+                                            </span>
+                                        </div>
+                                        <div class="float-right text-right" style="width: 100%;">
+                                            <p class="card-text text-dark textHe">กำลังดำเนินการ</p>
+                                            <p class="textareaHe"><span>{{countInProgress}}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30 marginCard">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix" style="display: flex;">
+                                        <div class="float-left">
+                                            <span class="text-danger">
+                                                <span class="material-icons-outlined classHe">note_add</span>
+                                            </span>
+                                        </div>
+                                        <div class="float-right text-right" style="width: 100%;">
+                                            <p class="card-text text-dark textHe">รอดำเนินการ</p>
+                                            <p class="textareaHe"><span>{{countWaiting}}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p-table id="tableReport" #dt2 [value]="submissionControlAll" dataKey="id" [rows]="10"
+                        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+                        [paginator]="true"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [globalFilterFields]="['firstName','lastName']">
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>ผู้รองเรียน</th>
+                                <th>สถานที่ทำงาน</th>
+                                <th>หน่วยงาน</th>
+                                <th>สถานะ</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p-columnFilter type="text" field="fullName"></p-columnFilter>
+                                </th>
+                                <th>
+                                    <p-columnFilter type="text" field="office"></p-columnFilter>
+                                </th>
+
+                                <th>
+
+                                    <p-columnFilter field="agencyNameTH" matchMode="equals" [showMenu]="false">
+                                        <ng-template pTemplate="filter">
+                                            <p-dropdown ngDefaultControl [(ngModel)]="valueAgency"
+                                                [options]="agencyList"
+                                                (onChange)="filterList(valueAgency,valueControlStatus)"
+                                                optionLabel="agencyNameTH" optionValue="id" [showClear]="false">
+                                                <ng-template let-option pTemplate="item">
+                                                    <span>{{option.agencyNameTH}}</span>
+                                                </ng-template>
+                                            </p-dropdown>
+                                        </ng-template>
+                                    </p-columnFilter>
+                                </th>
+                                <th>
+                                    <p-columnFilter field="submissionControlStatusNameTH" matchMode="equals"
+                                        [showMenu]="false">
+                                        <ng-template pTemplate="filter">
+                                            <p-dropdown ngDefaultControl [(ngModel)]="valueControlStatus"
+                                                [options]="controlStatus"
+                                                (onChange)="filterList(valueAgency,valueControlStatus)"
+                                                optionLabel="nameTH" optionValue="id" [showClear]="false">
+                                                <ng-template let-option pTemplate="item">
+                                                    <span>{{option.nameTH}}</span>
+                                                </ng-template>
+                                            </p-dropdown>
+                                        </ng-template>
+                                    </p-columnFilter>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-submissionControlAll>
+                            <tr>
+                                <td>
+                                    {{submissionControlAll.fullName}}
+                                </td>
+                                <td>
+                                    {{submissionControlAll.office}}
+                                </td>
+                                <td>
+                                    {{submissionControlAll.agencyNameTH}}
+                                </td>
+                                <td>
+                                    {{submissionControlAll.submissionControlStatusNameTH}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="5">No customers found.</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
