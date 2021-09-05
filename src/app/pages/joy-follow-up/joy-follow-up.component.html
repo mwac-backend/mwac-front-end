@@ -1,0 +1,79 @@
+
+<section style="padding-top: 1vh;min-height: 84vh;" class="content">
+  <div class="container-fluid">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="header ju" style="justify-content: space-between;">
+          <h2>
+            <strong>ติดตามการช่วยเหลือ</strong>
+          </h2>
+<!--          <div class="row">-->
+<!--            <div class="col-md-6 col-sm-12 mb-sm-3">-->
+<!--              <mat-form-field appearance="outline" class="w-100">-->
+<!--                <mat-label>Start date</mat-label>-->
+<!--                <input matInput [matDatepicker]="pickerStart" (dateChange)="onStartDate($event)"-->
+<!--                       [(ngModel)]="startDate">-->
+<!--                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>-->
+<!--                <mat-datepicker #pickerStart></mat-datepicker>-->
+<!--              </mat-form-field>-->
+<!--            </div>-->
+<!--            <div class="col-md-6 col-sm-12">-->
+<!--              <mat-form-field appearance="outline" class="w-100">-->
+<!--                <mat-label>End date</mat-label>-->
+<!--                <input matInput [matDatepicker]="pickerEnd" (dateChange)="onEndDate($event)" [(ngModel)]="endDate">-->
+<!--                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>-->
+<!--                <mat-datepicker #pickerEnd></mat-datepicker>-->
+<!--              </mat-form-field>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+        <div class="body">
+          <!--          <div>-->
+          <!--            <mat-form-field appearance="outline" >-->
+          <!--              <mat-label>Search</mat-label>-->
+          <!--              <input matInput placeholder="remark, visit number, order name" (keyup)="filter_input($event);">-->
+          <!--              <mat-icon type="submit" style="cursor: pointer;color:#001f60;" matSuffix>search_outlined</mat-icon>-->
+          <!--            </mat-form-field>-->
+          <!--          </div>-->
+          <div class="p-mb-3">
+            <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+            <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+            <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+          </div>
+          <p-table responsiveLayout="scroll" [value]="listJoy" selectionMode="single"
+                   [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">>
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th>วันที่</th>
+                <th>ชื่อ</th>
+                <th>คำร้อง</th>
+                <th>หน่วยงานที่ขอความช่วยหลือ</th>
+                <th>สถานะ</th>
+                <th style="width:4rem"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-list let-columns="columns">
+              <tr>
+                <td>{{list.submissiobControlCreateDate | dateFormat : 'DD-MM-YYYY HH:mm' }}</td>
+                <td>{{list.submissionControlTitle + list.submissionControlFirstName + " " + list.submissionControlLastName}}</td>
+                <td>{{list.submissionControlPetition}}</td>
+                <td>{{list.submissionControlAgencyNameTH}}</td>
+                <td>{{list.agencySubmissionControlStatusNameTH}}</td>
+                <td>
+                  <button mat-mini-fab color="warn" (click)="onRowConfirm(list)">
+                    <mat-icon>check</mat-icon>
+                  </button>
+                  <button *ngIf="list.listSlisttatusID != '1'" mat-mini-fab color="primary" (click)="onRowSelect(list.submissionControlID)">
+                    <mat-icon>manage_search</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

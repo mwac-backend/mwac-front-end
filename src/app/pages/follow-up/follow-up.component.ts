@@ -13,6 +13,8 @@ import * as moment from "moment";
   styleUrls: ['./follow-up.component.scss']
 })
 export class FollowUpComponent implements OnInit {
+  first = 0;
+  rows = 10;
   public userDetail:any = {}
   public submissionControl: submission[] = []
   public startDate: Date | string = moment().format("YYYY-MM-DD");
@@ -26,6 +28,25 @@ export class FollowUpComponent implements OnInit {
     this.loaddata(this.startDate, this.endDate)
 
   }
+  next() {
+    this.first = this.first + this.rows;
+  }
+
+  prev() {
+    this.first = this.first - this.rows;
+  }
+
+  reset() {
+    this.first = 0;
+  }
+
+  isLastPage(): boolean {
+    return this.submissionControl ? this.first === (this.submissionControl.length - this.rows): true;
+  }
+
+  isFirstPage(): boolean {
+    return this.submissionControl ? this.first === 0 : true;
+  }
 
   loaddata(startDate?: string | Date, endDate?: string | Date) {
     this.layout.show()
@@ -36,7 +57,7 @@ export class FollowUpComponent implements OnInit {
       (res) => {
         console.log(res)
         this.layout.hide()
-        this.submissionControl = res.filter((event:any) => event.submissionControlStatusID !== 3);
+        this.submissionControl = res.filter((event:any) => event.submissionControlStatusID !== 3&&event.submissionControlStatusID !== 4);
       },
       (error) => {
         this.layout.hide()
