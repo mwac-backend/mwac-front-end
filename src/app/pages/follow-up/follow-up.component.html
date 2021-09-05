@@ -1,5 +1,5 @@
 
-<section style="padding-top: 1vh;" class="content">
+<section style="padding-top: 1vh;min-height: 84vh;" class="content">
   <div class="container-fluid">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="card">
@@ -35,7 +35,14 @@
 <!--              <mat-icon type="submit" style="cursor: pointer;color:#001f60;" matSuffix>search_outlined</mat-icon>-->
 <!--            </mat-form-field>-->
 <!--          </div>-->
-                <p-table responsiveLayout="scroll" [value]="submissionControl" selectionMode="single">
+          <div class="p-mb-3">
+            <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+            <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+            <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+          </div>
+                <p-table responsiveLayout="scroll" [value]="submissionControl" selectionMode="single"
+                         [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">>
                   <ng-template pTemplate="header" let-columns>
                     <tr>
                       <th>วันที่</th>
@@ -57,7 +64,7 @@
                         <button *ngIf="submissionControl.submissionControlStatusID == '1'" mat-mini-fab color="warn" (click)="onRowConfirm(submissionControl)">
                           <mat-icon>check</mat-icon>
                         </button>
-                        <button *ngIf="submissionControl.submissionControlStatusID != '1'" mat-mini-fab color="primary" (click)="onRowSelect(submissionControl)">
+                        <button *ngIf="submissionControl.submissionControlStatusID != '1'" mat-mini-fab color="primary" (click)="onRowSelect(submissionControl.id)">
                           <mat-icon>manage_search</mat-icon>
                         </button>
                       </td>

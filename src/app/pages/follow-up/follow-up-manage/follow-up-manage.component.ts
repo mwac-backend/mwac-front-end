@@ -71,6 +71,8 @@ export class FollowUpManageComponent implements OnInit {
   public order_key: any = [];
 
   loadorder(data: any) {
+    this.order = [];
+    this.order_key = [];
     this.layout.show();
     this._http.get(API_URL.submissionOrder, {id: data.id}).subscribe(
       (res) => {
@@ -356,5 +358,12 @@ export class FollowManageDialoComponent implements OnInit {
         )
       }
     });
+  }
+  checkStatus(): any{
+    if(this.status.id == 4&&this.status.id == 7){
+      return !this.agencyId;
+    }else {
+      return false
+    }
   }
 }
