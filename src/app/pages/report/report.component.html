@@ -123,14 +123,14 @@
 
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>ชื่อผู้รองเรียน</th>
+                                <th>ผู้รองเรียน</th>
                                 <th>สถานที่ทำงาน</th>
                                 <th>หน่วยงาน</th>
                                 <th>สถานะ</th>
                             </tr>
                             <tr>
                                 <th>
-                                    <p-columnFilter type="text" field="firstName"></p-columnFilter>
+                                    <p-columnFilter type="text" field="fullName"></p-columnFilter>
                                 </th>
                                 <th>
                                     <p-columnFilter type="text" field="office"></p-columnFilter>
@@ -171,7 +171,7 @@
                         <ng-template pTemplate="body" let-submissionControlAll>
                             <tr>
                                 <td>
-                                    {{submissionControlAll.firstName}}
+                                    {{submissionControlAll.fullName}}
                                 </td>
                                 <td>
                                     {{submissionControlAll.office}}
