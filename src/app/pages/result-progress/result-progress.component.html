@@ -4,13 +4,48 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="card">
         <div class="header">
-          <h2>
-            <strong>ผลการดำเนินงาน</strong>
-          </h2>
-        </div>
+          <div class="row" style="width: 100%;height: 70px;">
+              <div class="col-12 col-sm-6 mgTop">
+                  <p class="mb-0" style="font-size: 17px;margin: 20px;">ผลการดำเนินงาน</p>
+              </div>
+              <div class="col-12 col-sm-6 breadcrumb"
+                  style="display: flex;justify-content: flex-end;align-items: flex-end;margin-top: 20px;">
+                  <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                          <li class="breadcrumb-item" routerLink="/dashboard">
+                              <span class="material-icons-outlined iconHome">home</span>
+                          </li>
+                          <li class="breadcrumb-item active" aria-current="page">ผลการดำเนินงาน</li>
+                      </ol>
+                  </nav>
+              </div>
+          </div>
+      </div>
         <div class="body">
+          <div class="row" style="padding: 5px 15px;">
+            <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Start date</mat-label>
+                    <input matInput [matDatepicker]="pickerStart" (dateChange)="onStartDate($event)"
+                        [(ngModel)]="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerStart></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>End date</mat-label>
+                    <input matInput [min]="startDate" [matDatepicker]="pickerEnd" (dateChange)="onEndDate($event)"
+                        [(ngModel)]="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerEnd></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
 
-          <p-table responsiveLayout="scroll" [value]="submissionControl" selectionMode="single">
+        <div class="row" style="padding: 5px 15px;">
+          <div class="col">
+               <p-table  responsiveLayout="scroll" [value]="submissionControl" selectionMode="single">
             <ng-template pTemplate="header" let-columns>
               <tr>
                 <th>วันที่</th>
@@ -23,20 +58,28 @@
             </ng-template>
             <ng-template pTemplate="body" let-submissionControl let-columns="columns">
               <tr>
-                <td>{{submissionControl.createDate | dateFormat : 'DD-MM-YYYY HH:mm' }}</td>
+                <td>{{submissionControl.createDate | dateFormat : 'HH:mm DD/MM/YYYY' }}</td>
                 <td>{{submissionControl.title + submissionControl.firstName + " " + submissionControl.lastName}}</td>
                 <td>{{submissionControl.petition}}</td>
                 <td>{{submissionControl.agencyNameTH}}</td>
                 <td>{{submissionControl.submissionControlStatusNameTH}}</td>
                 <td>
-                  <button mat-mini-fab color="primary" (click)="onRowSelect(submissionControl)">
+                  <button mat-mini-fab color="primary" (click)="onRowSelect(submissionControl.id)">
                     <mat-icon>manage_search</mat-icon>
                   </button>
                 </td>
               </tr>
             </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                  <td colspan="5">ไม่พบข้อมูล</td>
+              </tr>
+          </ng-template>
           </p-table>
 
+          </div>
+        </div>
+       
         </div>
       </div>
     </div>
