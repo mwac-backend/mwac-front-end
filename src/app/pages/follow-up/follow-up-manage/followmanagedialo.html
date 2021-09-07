@@ -60,7 +60,8 @@
     </div>
   </mat-dialog-content>
   <div style="text-align: end;">
-    <button color="primary" mat-raised-button (click)="save()" [disabled]="!selectedStatus&&checkStatus()">ส่ง</button>
+    <button *ngIf="status.id != 4&&status.id != 7" color="primary" mat-raised-button (click)="save()" [disabled]="!selectedStatus">ส่ง</button>
+    <button *ngIf="status.id == 4||status.id == 7" color="primary" mat-raised-button (click)="save()" [disabled]="!selectedStatus||!agencyId">ส่ง</button>
   </div>
 </div>
 <div *ngIf="data.type === 'newTimeLine'">
