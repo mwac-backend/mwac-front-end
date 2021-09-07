@@ -79,6 +79,7 @@ export class JoyFollowUpComponent implements OnInit {
         }).subscribe(
           (res) => {
             this.layout.hide()
+            this.loadData()
           },
           (error) => {
             console.error(error)

@@ -41,6 +41,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     this.drawer.close();
     let a = this.router.isActive('/dashboard', true)
     console.log(a)
+      let userDetail:any = localStorage.getItem('userDetail')
+    console.log(JSON.parse(userDetail))
   }
 
 
