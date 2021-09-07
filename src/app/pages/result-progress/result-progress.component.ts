@@ -33,7 +33,8 @@ export class ResultProgressComponent implements OnInit {
       (res) => {
         console.log(res)
         this.layout.hide()
-        this.submissionControl = res
+        // this.submissionControl = res
+        this.submissionControl = res.filter((data: any) => data.submissionControlStatusID === 3);
       },
       (error) => {
         this.layout.hide()
@@ -43,6 +44,7 @@ export class ResultProgressComponent implements OnInit {
   }
   onRowSelect(event:any) {
     console.log(event)
+    
     this.SaveDataService.submissionControl = event
     this.router.navigate(['/follow-up-manage'])
   }
