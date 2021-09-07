@@ -60,21 +60,32 @@ export class FollowUpManageComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.SaveDataService.submissionControl);
     if (this.SaveDataService.submissionControl) {
-      this.data = this.SaveDataService.submissionControl;
-      this.loadorder(this.data);
+      this.loadData(this.SaveDataService.submissionControl)
+      this.loadorder(this.SaveDataService.submissionControl);
     } else {
       this.router.navigate(['follow-up']);
     }
   }
 
+  loadData(submissionControlId: any){
+    this._http.get(API_URL.getsubmissionControlById,{
+      submissionControlId
+    }).subscribe(
+      (res)=>{
+        this.data = res[0]
+      },(err)=>{
+        console.error(err)
+      }
+    )
+  }
   public order: any = [];
   public order_key: any = [];
 
-  loadorder(data: any) {
+  loadorder(id: any) {
     this.order = [];
     this.order_key = [];
     this.layout.show();
-    this._http.get(API_URL.submissionOrder, {id: data.id}).subscribe(
+    this._http.get(API_URL.submissionOrder, {id}).subscribe(
       (res) => {
         console.log(res);
         this.order = res.reduce((r: { [x: string]: any; }, a: { groupUUID: string | number; }) => {
@@ -128,7 +139,7 @@ export class FollowUpManageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log(result)
-        this.loadorder(this.data);
+        this.loadorder(this.SaveDataService.submissionControl);
       }
     });
   }
