@@ -22,6 +22,7 @@ export class API_URL {
   static getMappingJoy = API_URL.BASE_URL + '/submission/list-mapping-by-agency'
 
 
+  static getsubmissionControlById = API_URL.BASE_URL + '/submission/control/by-id'
 
 
 }

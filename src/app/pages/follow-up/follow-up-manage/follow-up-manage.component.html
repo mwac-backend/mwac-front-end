@@ -9,32 +9,52 @@
 <!--    {{a|json}}-->
 <!--  </li>-->
 <!--</ul>-->
-<div class="container-fluid">
-<div class="card">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
-        <h3> หน่วยงาน : <strong>{{data.agencyNameTH}}</strong></h3>
+
+
+<div class="row">
+  <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
+              <h3> หน่วยงาน : <strong>{{data.agencyNameTH}}</strong></h3>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
+              <h3> สร้างโดย : <strong>{{data.createByName}}</strong></h3>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
+              <h3> ผู้แจ้งปัญหา : <strong>{{data.firstName}} {{data.lastName}} {{data.title}}</strong></h3>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
+              <h3> สถานะ : <strong>{{data.submissionControlStatusNameTH}}</strong></h3>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
+              <h3> เมื่อ : <strong>{{data.createDate|dateFormat:'DD-MM-YYYY'}}</strong></h3>
+            </div>
+            <div class="col-12">
+              <h3> เรื่อง : <strong>{{data.petition}}</strong></h3>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
-        <h3> สร้างโดย : <strong>{{data.createByName}}</strong></h3>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
-        <h3> ผู้แจ้งปัญหา : <strong>{{data.firstName}} {{data.lastName}} {{data.title}}</strong></h3>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
-        <h3> สถานะ : <strong>{{data.submissionControlStatusNameTH}}</strong></h3>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
-        <h3> เมื่อ : <strong>{{data.createDate|dateFormat:'DD-MM-YYYY'}}</strong></h3>
-      </div>
-      <div class="col-12">
-        <h3> เรื่อง : <strong>{{data.petition}}</strong></h3>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <h3> ในห้อง : <strong></strong></h3>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+
 
 <section style="padding-top: 1vh;min-height: 84vh;" class="content">
   <div class="container-fluid">
@@ -90,7 +110,7 @@
                           </div>
                         </div>
                       </li>
-                      <li>
+                      <li *ngIf="order[key][order[key].length - 1].submissionOrderStatusID !== 5">
                         <time class="left-time" datetime="2017-11-04T03:45"><span></span>
                           <span></span></time>
                         <div class="left-icon">
