@@ -4,7 +4,8 @@ import {Router} from "@angular/router";
 import {LayoutComponent} from "../../shared/layout/layout.component";
 import {API_URL} from "../../shared/constant/api.constant";
 import {SaveDataService} from "../../shared/service/save-data.service";
-
+import * as moment from 'moment';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-result-progress',
   templateUrl: './result-progress.component.html',
@@ -17,6 +18,10 @@ export class ResultProgressComponent implements OnInit {
   constructor(public SaveDataService:SaveDataService,public _http: HttpService, private router: Router,public layout: LayoutComponent) {
   }
 
+  public startDate: Date | string = moment().format("YYYY-MM-DD");
+  public endDate: Date | string = moment().format("YYYY-MM-DD");
+
+
   ngOnInit(): void {
     this.userDetail = JSON.parse(<string>localStorage.getItem('userDetail'))
     console.log(this.userDetail)
@@ -25,15 +30,18 @@ export class ResultProgressComponent implements OnInit {
   }
 
   loaddata(agencyID:string|number ) {
+    const startDate = moment(this.startDate).format("YYYY-MM-DD HH:mm:ss");
+    const endDate = moment(this.endDate).format("YYYY-MM-DD HH:mm:ss");
     this.layout.show()
     this._http.get(API_URL.submission_control, {
-      endDate: '',
-      startDate: ''
+      endDate: endDate,
+      startDate: startDate
     }).subscribe(
       (res) => {
         console.log(res)
-        this.layout.hide()
-        this.submissionControl = res
+        this.layout.hide();
+        // this.submissionControl = res
+        this.submissionControl = res.filter((data: any) => data.submissionControlStatusID === 3);
       },
       (error) => {
         this.layout.hide()
@@ -43,9 +51,21 @@ export class ResultProgressComponent implements OnInit {
   }
   onRowSelect(event:any) {
     console.log(event)
+    event.fromResultProgress
     this.SaveDataService.submissionControl = event
     this.router.navigate(['/follow-up-manage'])
   }
+
+  onStartDate(event:any) {
+    this.startDate = moment(event.target.value).format("YYYY-MM-DD");
+    this.loaddata(this.userDetail.agencyID);
+  }
+
+  onEndDate(event:any) {
+    this.endDate = moment(event.target.value).format("YYYY-MM-DD");
+    this.loaddata(this.userDetail.agencyID);
+  }
+ 
 
 }
 
