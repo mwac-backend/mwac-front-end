@@ -20,7 +20,7 @@
             <div class="col-md-6 col-sm-12">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>End date</mat-label>
-                <input matInput [matDatepicker]="pickerEnd" (dateChange)="onEndDate($event)" [(ngModel)]="endDate">
+                <input matInput [matDatepicker]="pickerEnd" [min]="startDate" (dateChange)="onEndDate($event)" [(ngModel)]="endDate">
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerEnd></mat-datepicker>
               </mat-form-field>

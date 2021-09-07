@@ -32,6 +32,11 @@ export class ReportComponent implements OnInit {
   agencyList:any = [];
   controlStatus:any = [];
 
+  public startDate: Date | string = moment().format("YYYY-MM-DD");
+  public endDate: Date | string = moment().format("YYYY-MM-DD");
+
+  basicData:any;
+   basicOptions:any;
 
   constructor(
     private messageService: MessageService,
@@ -46,18 +51,18 @@ export class ReportComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loadSubmissionControlAll();
+    this.loadSubmissionControlAll(this.startDate,this.endDate);
     this.loadAgencyList();
     this.loadControlStatusList();
 
-  }
+}
 
-  loadSubmissionControlAll() {
-    const startDate = undefined;
-    const endDate = undefined;
+  loadSubmissionControlAll(start:any,end:any) {
+    const startDate = moment(start).format("YYYY-MM-DD HH:mm:ss");
+    const endDate = moment(end).format("YYYY-MM-DD HH:mm:ss");
     // startDate:'2021-08-30',endDate:'2021-08-31' 
     this.layout.show();
-    this._http.get(API_URL.submission_control_all, { }).subscribe(
+    this._http.get(API_URL.submission_control_all, {startDate,endDate}).subscribe(
       (res) => {
         if (res) {
           this.submissionControlAll = res.filter((data: any) => data.submissionControlStatusID !== 4);
@@ -129,6 +134,15 @@ export class ReportComponent implements OnInit {
    }
   }
 
+  onStartDate(event:any) {
+    this.startDate = moment(event.target.value).format("YYYY-MM-DD");
+    this.loadSubmissionControlAll(this.startDate, this.endDate);
+  }
+
+  onEndDate(event:any) {
+    this.endDate = moment(event.target.value).format("YYYY-MM-DD");
+    this.loadSubmissionControlAll(this.startDate, this.endDate);
+  }
  
 
 }

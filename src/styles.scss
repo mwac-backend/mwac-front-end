@@ -66,6 +66,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       background-color: revert;
     }
 }
+
+#tableReport{
+  .p-datatable table {
+    width: -webkit-fill-available;
+}
+}
+
 #fileDragDrop2{
   .placeholder{
       background-color: revert;

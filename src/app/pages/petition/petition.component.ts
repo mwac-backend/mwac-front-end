@@ -139,7 +139,8 @@ export class PetitionComponent implements OnInit {
         this.layout.showMessageNoti({ key: 'tr', severity: 'success', summary: 'Success !!', detail: 'save data success' });
         this.layout.hide();
         this.fileControl.value.splice(0, this.fileControl.value.length);
-        this.router.navigate(['/follow-up']);
+        this.router.navigate(['/']);
+        this.router.navigate(['/']);
       },
       (error) => {
         console.error(error);
