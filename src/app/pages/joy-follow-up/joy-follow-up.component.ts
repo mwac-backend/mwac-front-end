@@ -73,7 +73,7 @@ export class JoyFollowUpComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.layout.show()
-        this._http.post(API_URL.submissionOrder, {
+        this._http.post(API_URL.statusMapping, {
           mappingID: event.id,
           mappingStatus:'2'
         }).subscribe(

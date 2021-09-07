@@ -21,6 +21,7 @@ export class API_URL {
   static getSubmissionControlStatus = API_URL.BASE_URL + '/submissionControlStatus'
   
   static getMappingJoy = API_URL.BASE_URL + '/submission/list-mapping-by-agency'
+  static statusMapping = API_URL.BASE_URL + '/submission/update-status-mapping'
 
 
   static getsubmissionControlById = API_URL.BASE_URL + '/submission/control/by-id'

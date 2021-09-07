@@ -170,7 +170,7 @@ export class FollowManageDialoComponent implements OnInit {
   public status: any = {}
   public selectedStatus = false
   public agencyList: any = [];
-  public userList: any = {}
+  public userList: any = []
   public agencyId: null | string | number = null;
   public userId: null | string | number = null;
 
@@ -214,6 +214,11 @@ export class FollowManageDialoComponent implements OnInit {
   }
 
   save() {
+    if (this.agencyId){
+
+    }else{
+
+    }
     Swal.fire({
       title: 'ยืนยัน',
       text: 'คุณต้องการจะรดำเนินการต่อหรือไม่',
@@ -370,11 +375,19 @@ export class FollowManageDialoComponent implements OnInit {
       }
     });
   }
-  checkStatus(): any{
-    if(this.status.id == 4&&this.status.id == 7){
-      return !this.agencyId;
+  checkStatus(id : number): boolean{
+    console.log(id )
+    if(id == 4||id == 7){
+      if(!this.agencyId){
+        console.log(1)
+        return true
+      }else {
+        console.log(2)
+        return false
+      }
     }else {
-      return false
+      console.log(3)
+      return true
     }
   }
 }
