@@ -64,6 +64,7 @@ import {CountDatePipe} from './shared/pipe/count-date.pipe';
 import {ResultProgressComponent} from './pages/result-progress/result-progress.component';
 import {ReportComponent} from './pages/report/report.component';
 import { JoyFollowUpComponent } from './pages/joy-follow-up/joy-follow-up.component';
+import { FollowUpMessageComponent } from './pages/follow-up/follow-up-message/follow-up-message.component';
 // config
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -85,7 +86,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FollowManageDialoComponent,
     ResultProgressComponent,
     ReportComponent,
-    JoyFollowUpComponent
+    JoyFollowUpComponent,
+    FollowUpMessageComponent
   ],
   imports: [
     BrowserModule,
