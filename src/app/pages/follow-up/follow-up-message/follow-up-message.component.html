@@ -12,58 +12,44 @@
       <div class="chat-history" id="chat-conversation" style="position: relative; max-height: 449px;"
            [perfectScrollbar]>
         <ul>
-          <li class="clearfix">
-            <div class="message-data text-end">
-                        <span class="message-data-time">10:10 AM, Today
-                      </span>
-              &nbsp; &nbsp;
-              <span class="message-data-name">Maria</span>
+
+          <li  [ngClass]="{'clearfix': isFirst || isLast}" *ngFor="let m of listMessage; index as i; first as isFirst; last as isLast">
+
+            <div *ngIf="staff.id == m.createByID && !m.isActivate">
+              <div class="message-data text-end">
+                <span class="message-data-time">{{m.createByDate}}</span>
+                &nbsp; &nbsp;
+                <span class="message-data-name">{{m.createByName}}</span>
+<!--                <img [src]="m.createByPhotoPath" style="width: 50px">-->
+              </div>
+              <div class="message other-message float-end"> {{m.message }} </div>
             </div>
-            <div class="message other-message float-end"> Hi Robert , how are you? How is
-              your work going on?
-            </div>
-          </li>
-          <li>
-            <div class="message-data">
-              <span class="message-data-name">Robert </span>
-              <span class="message-data-time">10:12 AM, Today</span>
-            </div>
-            <div class="message my-message">
-              <p>Its good. We completed almost all task assign by our manager.</p>
-              <div class="row">
+
+            <div *ngIf="staff.id != m.createByID && !m.isActivate">
+              <div class="message-data">
+                <span class="message-data-name">{{m.createByName}} </span>
+                <span class="message-data-time">{{m.createByDate}}</span>
+              </div>
+              <div class="message my-message">
+                <p>{{m.message}}</p>
               </div>
             </div>
+
+            <div *ngIf="m.isActivate">
+              <p>{{m.name}} {{m.action}}</p>
+
+            </div>
+
           </li>
-          <li>
-            <div class="message-data">
-              <span class="message-data-name">Robert </span>
-              <span class="message-data-time">10:12 AM, Today</span>
-            </div>
-            <div class="message my-message">
-              <p>How are you feel today? What's about vacation?.</p>
-              <div class="row">
-              </div>
-            </div>
-          </li>
-          <li class="clearfix">
-            <div class="message-data text-end">
-                      <span class="message-data-time">10:10 AM, Today
-                      </span>
-              &nbsp; &nbsp;
-              <span class="message-data-name">Maria</span>
-            </div>
-            <div class="message other-message float-end"> I am good, We think for next
-              weekend.
-            </div>
-          </li>
+
         </ul>
       </div>
       <div class="chat-message clearfix">
         <div class="form-group">
           <div class="form-line">
             <mat-form-field class="example-full-width" appearance="outline"
-                            [hideRequiredMarker]="hideRequiredControl.value">
-              <input matInput placeholder="Enter text here.." required>
+                            [hideRequiredMarker]="hideRequiredControl.value"  >
+              <input id="text-message" matInput placeholder="Enter text here.." required [(ngModel)]="messageText" (keyup.enter)="sendMessage($event)">
             </mat-form-field>
           </div>
         </div>

@@ -2,6 +2,7 @@ import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {FormControl} from "@angular/forms";
 import { io } from 'socket.io-client';
+import * as jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-follow-up-message',
@@ -32,14 +33,19 @@ export class FollowUpMessageComponent implements OnInit, OnDestroy {
   show = false;
   hideRequiredControl = new FormControl(false);
   socket: any = null;
-  readonly url: string = 'http://localhost:3006/chat';
-
+  isConnectSocket = false;
+  listMessage: any[] = [];
+  readonly url: string = 'http://68.183.236.106:1191/chat';
+  staff: any;
+  messageText: string | null = '';
 
   constructor() { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token') || "";
-    this.connectChat(this.submissionControlID, token);
+    if(this.submissionControlID) {
+      this.connectChat(this.submissionControlID, token);
+    }
   }
 
   ngOnDestroy(): void {
@@ -56,23 +62,66 @@ export class FollowUpMessageComponent implements OnInit, OnDestroy {
 
 
   connectChat(submissionControlID: string, token: string) {
+
     this.socket = io(this.url, {
-      auth: {
+      extraHeaders: {
         'authorization': `Bearer ${token}`
       },
       query: {
-       submissionControlID,
-      }
+        'submissionControlID': submissionControlID
+      },
+      reconnection: true
     });
 
-    this.socket.on('on-get-message', (data: any) => {
-      console.log(data);
-    })
-
     this.socket.on('error', (data: any) => {
-      console.log(data);
+      console.error(data)
     })
 
+    this.socket.on('connect-info', (data: any) => {
+      this.staff = data;
+    })
+
+    this.socket.on('on-get-message', (data: any) => {
+      this.listMessage = data;
+    })
+
+    this.socket.on('on-leave', (data: any) => {
+      this.listMessage = [...this.listMessage, {isActivate: true, name: data.fullName, action: 'leave'}]
+    });
+
+    this.socket.on('on-join', (data: any) => {
+      this.listMessage = [...this.listMessage, {isActivate: true, name: data.fullName, action: 'join'}]
+    })
+
+  }
+
+
+  sendMessage(event: any) {
+    if(this.messageText) {
+      //@ts-ignore
+      if(this.socket) {
+        this.socket.emit('send-message', {
+          message: this.messageText,
+          messageTypeID: 1
+        });
+        this.getMessage();
+        this.messageText = null;
+      }
+    }
+
+  }
+
+  getMessage() {
+    if(this.socket) {
+      this.socket.emit('get-message', (data: any) => {
+        this.listMessage = data;
+      });
+    }
+  }
+
+
+  changeTextMessage(event: any) {
+    console.log(event)
   }
 
 
