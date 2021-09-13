@@ -100,9 +100,9 @@
 
                         <div class="left-label">
                           <h2><a href="#"
-                                 onClick="return false;">{{list.createByName}}</a><strong> {{list.agencyNameTH}} </strong>
+                                 onClick="return false;">{{list.createByName}}</a><strong> {{list.createByAgencyNameTH}} </strong>
                             <span
-                              class="span-id-{{list.submissionOrderStatusID}}">{{list.submissionOrderStatusNameTH}}</span>
+                              class="span-id-{{list.submissionOrderStatusID}}">{{list.submissionOrderStatusNameTH}}</span>&nbsp; <span *ngIf="list.submissionOrderStatusID == 4 || list.submissionOrderStatusID == 7">{{list.agencyNameTH}}</span>
                           </h2>
                           <p>{{list.remark}}</p>
                           <div *ngFor="let Document of list.submissionOrderDocument">
@@ -260,3 +260,4 @@
   </div>
 </section>
 <app-follow-up-message [submissionControlID]="SaveDataService.submissionControl"></app-follow-up-message>
+<app-follow-up-message [submissionControlID]="data.submissionControlID"></app-follow-up-message>
