@@ -25,6 +25,8 @@ export class API_URL {
 
 
   static getsubmissionControlById = API_URL.BASE_URL + '/submission/control/by-id'
+  static apiCategoryPetition = API_URL.BASE_URL + '/categoryPetition'
+
 
 
 }

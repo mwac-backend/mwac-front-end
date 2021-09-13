@@ -23,6 +23,7 @@ export class PetitionComponent implements OnInit {
   public formConfig = formPetitionConfigs.form
   agencyList: any = [];
   formPetition: FormGroup;
+  categoryPetitionList: any = [];
 
   constructor(private messageService: MessageService,
     private _formBuilder: FormBuilder,
@@ -30,13 +31,19 @@ export class PetitionComponent implements OnInit {
     private router: Router,
     public spinner: NgxSpinnerService,
     public layout: LayoutComponent) {
+      this.formPetition = this._formBuilder.group({});
+  }
+
+  ngOnInit(): void {
+    this.loadAgencyList();
+    this.loadCategoryPetition();
     this.formPetition = this._formBuilder.group({
       [this.formConfig.id.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.title.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.firstName.field]: new FormControl({ value: null, disabled: false }, Validators.compose([Validators.required])),
       [this.formConfig.lastName.field]: new FormControl({ value: null, disabled: false }, Validators.compose([Validators.required])),
       [this.formConfig.agencyID.field]: new FormControl({ value: null, disabled: false }, Validators.compose([Validators.required])),
-      [this.formConfig.petitionDate.field]: new FormControl({ value: null, disabled: false }),
+      [this.formConfig.petitionDate.field]: new FormControl({ value: new Date, disabled: false }),
       [this.formConfig.petition.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.office.field]: new FormControl({ value: null, disabled: false }, Validators.compose([Validators.required])),
       [this.formConfig.address.field]: new FormControl({ value: null, disabled: false }),
@@ -44,14 +51,9 @@ export class PetitionComponent implements OnInit {
       [this.formConfig.district.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.province.field]: new FormControl({ value: null, disabled: false }),
       [this.formConfig.postcode.field]: new FormControl({ value: null, disabled: false }),
-      [this.formConfig.submissionControlStatusID.field]: new FormControl({ value: 1, disabled: false })
-
+      [this.formConfig.submissionControlStatusID.field]: new FormControl({ value: 1, disabled: false }),
+      [this.formConfig.fromID.field]: new FormControl({ value: null, disabled: false },Validators.compose([Validators.required]))
     });
-  }
-
-  ngOnInit(): void {
-    this.loadAgencyList();
-
     // this.home = {icon: 'pi pi-home', routerLink: '/'};
   }
 
@@ -78,6 +80,24 @@ export class PetitionComponent implements OnInit {
         if (res) {
           this.agencyList = res;
           console.log(res);
+          this.layout.hide();
+        }
+      },
+      (error) => {
+        console.error(error);
+        this.layout.hide();
+        // this.layout.showMessageNoti({key: 'tr', severity:'error', summary: 'Error', detail: error.status});
+      }
+    )
+  }
+
+  loadCategoryPetition() {
+    this.layout.show();
+    this._http.get(API_URL.apiCategoryPetition, { }).subscribe(
+      (res) => {
+        if (res) {
+          this.categoryPetitionList = res;
+          console.log('catgory petition',res);
           this.layout.hide();
         }
       },
@@ -139,8 +159,7 @@ export class PetitionComponent implements OnInit {
         this.layout.showMessageNoti({ key: 'tr', severity: 'success', summary: 'Success !!', detail: 'save data success' });
         this.layout.hide();
         this.fileControl.value.splice(0, this.fileControl.value.length);
-        this.router.navigate(['/']);
-        this.router.navigate(['/']);
+        this.router.navigate(['/follow-up']);
       },
       (error) => {
         console.error(error);
@@ -151,7 +170,7 @@ export class PetitionComponent implements OnInit {
   }
 
 ifCancel(){
-  this.router.navigate(['/dashboard']);
+  this.router.navigate(['/follow-up']);
 }
 
 }

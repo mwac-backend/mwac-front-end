@@ -55,6 +55,10 @@ export const formPetitionConfigs = Object.freeze({
         agencyID: {
             field: 'agencyID',
             name: 'Agency',
+        },
+        fromID: {
+            field: 'fromID',
+            name: 'From ID',
         }
     }
 });
